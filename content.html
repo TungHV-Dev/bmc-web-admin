@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Nội dung website</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="content">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Nội dung website</span><h1>Quản trị nội dung website</h1><p>Cấu hình các khối trên trang chủ, quản lý sách và tài liệu chia sẻ (ADMIN-08 — phạm vi cần khách hàng xác nhận thêm).</p></div>
+  </div>
+
+  <section class="panel">
+    <div class="tabs" data-tabs>
+      <button class="tab active" data-tab="home">Trang chủ</button>
+      <button class="tab" data-tab="books">Sách</button>
+      <button class="tab" data-tab="docs">Tài liệu</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="home">
+      <div class="page-actions" style="justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary" type="button" data-toast="Đã lưu thứ tự khối trang chủ (mô phỏng)">Lưu thay đổi</button></div>
+      <div class="section-toggle-list">
+        <div class="section-toggle"><span class="order-badge">1</span><svg class="icon drag-handle"><use href="#i-move"/></svg><strong>Banner / Slider trang chủ</strong><div class="switch"><input type="checkbox" id="s1" checked><label for="s1"></label></div></div>
+        <div class="section-toggle"><span class="order-badge">2</span><svg class="icon drag-handle"><use href="#i-move"/></svg><strong>Chương trình học theo cấp</strong><div class="switch"><input type="checkbox" id="s2" checked><label for="s2"></label></div></div>
+        <div class="section-toggle"><span class="order-badge">3</span><svg class="icon drag-handle"><use href="#i-move"/></svg><strong>Khoá học nổi bật</strong><div class="switch"><input type="checkbox" id="s3" checked><label for="s3"></label></div></div>
+        <div class="section-toggle"><span class="order-badge">4</span><svg class="icon drag-handle"><use href="#i-move"/></svg><strong>Về BMC Education</strong><div class="switch"><input type="checkbox" id="s4" checked><label for="s4"></label></div></div>
+        <div class="section-toggle"><span class="order-badge">5</span><svg class="icon drag-handle"><use href="#i-move"/></svg><strong>Sách tiêu biểu</strong><div class="switch"><input type="checkbox" id="s5" checked><label for="s5"></label></div></div>
+      </div>
+      <p class="form-hint" style="margin-top:14px">Kéo thả để đổi thứ tự (mô phỏng bố cục — thao tác kéo thả thực tế sẽ hoàn thiện ở bản production).</p>
+    </div>
+
+    <div class="tab-panel" data-panel="books">
+      <div class="page-actions" style="justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary" type="button" data-open-modal="addBookModal"><svg class="icon"><use href="#i-plus"/></svg>Thêm sách</button></div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Sách</th><th>Chuyên đề</th><th>Giá demo</th><th>Trạng thái</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tổng ôn Toán 12 theo chuyên đề</strong></td><td>Toán THPT</td><td>149.000đ</td><td><span class="status-pill"><i class="status-dot on"></i>Đang bán</span></td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá sách (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+          <tr><td><strong>Giải tích nền tảng cho sinh viên</strong></td><td>Toán Đại học</td><td>179.000đ</td><td><span class="status-pill"><i class="status-dot on"></i>Đang bán</span></td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá sách (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+          <tr><td><strong>Hình học không gian bằng tư duy</strong></td><td>Hình học</td><td>165.000đ</td><td><span class="status-pill"><i class="status-dot off"></i>Ngừng bán</span></td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá sách (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        </tbody>
+      </table></div>
+      <p class="form-hint" style="margin-top:12px">Thanh toán online, vận chuyển và quản lý đơn hàng chưa nằm trong phạm vi demo hiện tại (xem mục "Ngoài phạm vi" trong tài liệu yêu cầu).</p>
+    </div>
+
+    <div class="tab-panel" data-panel="docs">
+      <div class="page-actions" style="justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary" type="button" data-open-modal="addDocModal"><svg class="icon"><use href="#i-plus"/></svg>Tải tài liệu mới</button></div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Tài liệu</th><th>Định dạng</th><th>Kích hoạt qua form liên hệ</th><th>Trạng thái</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><strong>20 công thức đạo hàm</strong></td><td>PDF</td><td><span class="status-pill"><i class="status-dot on"></i>Có</span></td><td><span class="status-pill"><i class="status-dot on"></i>Xuất bản</span></td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá tài liệu (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+          <tr><td><strong>Checklist ôn tập tuần</strong></td><td>Word</td><td><span class="status-pill"><i class="status-dot off"></i>Không</span></td><td><span class="status-pill"><i class="status-dot on"></i>Xuất bản</span></td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá tài liệu (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+          <tr><td><strong>Bộ đề tổng ôn giữa kỳ</strong></td><td>PDF</td><td><span class="status-pill"><i class="status-dot on"></i>Có</span></td><td><span class="status-pill"><i class="status-dot off"></i>Chờ duyệt</span></td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá tài liệu (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addBookModal"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>Thêm sách</h2><p>Thông tin hiển thị trên trang Sách của Portal.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addBookForm">
+    <div class="form-field"><label>Tên sách<em>*</em></label><input required placeholder="VD: Tổng ôn Toán 11"></div>
+    <div class="form-row"><div class="form-field"><label>Chuyên đề</label><input placeholder="VD: Toán THPT"></div><div class="form-field"><label>Giá (demo)</label><input placeholder="VD: 149.000đ"></div></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Lưu sách</button>
+  </form>
+</section></div>
+
+<div class="modal-backdrop" id="addDocModal"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>Tải tài liệu mới</h2><p>File PDF/Word sẽ được kiểm tra loại và kích thước trước khi xuất bản.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <div class="modal-form">
+    <div class="captcha" style="justify-content:center;flex-direction:column;gap:8px;padding:26px;text-align:center"><svg class="icon" style="width:26px;height:26px"><use href="#i-file"/></svg><span>Kéo thả file PDF/Word vào đây (mô phỏng)</span></div>
+    <div class="switch-row"><div><strong>Yêu cầu gửi form liên hệ để tải</strong><span>Áp dụng PORTAL-15 — cấp/tặng tài liệu sau khi gửi form</span></div><div class="switch"><input type="checkbox" id="docGate" checked><label for="docGate"></label></div></div>
+    <button class="btn btn-primary" type="button" data-close-modal data-toast="Đã tải lên tài liệu, chờ duyệt (mô phỏng)" style="width:100%">Tải lên</button>
+  </div>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-tab]').forEach(tab => tab.addEventListener('click', () => {
+    $$('[data-tab]').forEach(x => x.classList.toggle('active', x === tab));
+    $$('[data-panel]').forEach(x => x.classList.toggle('active', x.dataset.panel === tab.dataset.tab));
+  }));
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  document.getElementById('addBookForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('addBookModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã lưu sách mới (mô phỏng)'); });
+});
+</script>
+</body></html>

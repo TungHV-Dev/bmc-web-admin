@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Cấu trúc nội dung khoá học</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="course-builder">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><a href="courses.html">Khoá học</a><svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Cấu trúc nội dung</span><h1>Giải tích 1 — Nắm chắc nền tảng</h1><p>Xây dựng cấu trúc nội dung dạng cây, tối đa 5 cấp; mỗi cấp có thể đính kèm tài liệu cùng nhóm loại.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-outline" type="button" data-toast="Đã lưu bản nháp (mô phỏng)">Lưu nháp</button><button class="btn btn-primary" type="button" data-toast="Đã xuất bản khoá học (mô phỏng)"><svg class="icon"><use href="#i-check"/></svg>Xuất bản</button></div>
+  </div>
+
+  <div class="level-cap" style="margin-bottom:16px"><svg class="icon"><use href="#i-shield"/></svg>Cấu trúc nội dung cho phép tối đa 5 cấp lồng nhau (VD: Chương → Bài → Mục → Ý → Nội dung). Nút "Thêm mục con" sẽ tự khoá khi đạt cấp 5.</div>
+
+  <section class="panel">
+    <div class="panel-body">
+      <div class="tree-toolbar"><strong style="font-size:12px">Cây nội dung</strong><button class="btn btn-outline" type="button" id="addRootNode"><svg class="icon"><use href="#i-plus"/></svg>Thêm chương (cấp 1)</button></div>
+
+      <div class="course-tree" id="courseTree">
+        <div class="tree-node" data-level="1">
+          <div class="tree-node-row">
+            <span class="tree-level">1</span>
+            <div class="tree-node-title"><strong>Chương 1 — Giới hạn và liên tục</strong><span>4 mục con · Đính kèm: Tài liệu tổng quan (PDF)</span></div>
+            <div class="tree-node-actions">
+              <button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button>
+              <button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button>
+              <button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button>
+            </div>
+          </div>
+          <div class="tree-attach"><svg class="icon"><use href="#i-file"/></svg>Nhóm tài liệu cấp này: <strong>PDF, Slide</strong></div>
+          <div class="tree-children">
+
+            <div class="tree-node" data-level="2">
+              <div class="tree-node-row"><span class="tree-level">2</span><div class="tree-node-title"><strong>Bài 1 — Định nghĩa giới hạn dãy số</strong><span>3 mục con</span></div>
+                <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+              </div>
+              <div class="tree-children">
+                <div class="tree-node" data-level="3">
+                  <div class="tree-node-row"><span class="tree-level">3</span><div class="tree-node-title"><strong>Mục 1.1 — Lý thuyết</strong><span>Video bài giảng · 12 phút</span></div>
+                    <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+                  </div>
+                </div>
+                <div class="tree-node" data-level="3">
+                  <div class="tree-node-row"><span class="tree-level">3</span><div class="tree-node-title"><strong>Mục 1.2 — Ví dụ minh hoạ</strong><span>2 mục con</span></div>
+                    <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+                  </div>
+                  <div class="tree-children">
+                    <div class="tree-node" data-level="4">
+                      <div class="tree-node-row"><span class="tree-level">4</span><div class="tree-node-title"><strong>Ý a — Ví dụ cơ bản</strong><span>1 mục con</span></div>
+                        <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+                      </div>
+                      <div class="tree-children">
+                        <div class="tree-node" data-level="5">
+                          <div class="tree-node-row"><span class="tree-level">5</span><div class="tree-node-title"><strong>Nội dung — Lời giải chi tiết</strong><span>Đính kèm: PDF lời giải</span></div>
+                            <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con" disabled title="Đã đạt cấp tối đa (5)"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tree-node" data-level="3">
+                  <div class="tree-node-row"><span class="tree-level">3</span><div class="tree-node-title"><strong>Mục 1.3 — Bài tập tự luyện</strong><span>Đính kèm: Bộ 10 câu trắc nghiệm</span></div>
+                    <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-node" data-level="2">
+              <div class="tree-node-row"><span class="tree-level">2</span><div class="tree-node-title"><strong>Bài 2 — Giới hạn hàm số</strong><span>0 mục con</span></div>
+                <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tree-node" data-level="1">
+          <div class="tree-node-row"><span class="tree-level">1</span><div class="tree-node-title"><strong>Chương 2 — Đạo hàm</strong><span>0 mục con</span></div>
+            <div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addNodeModal"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>Thêm mục con</h2><p>Chọn cấp tiếp theo và loại tài liệu đính kèm.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addNodeForm">
+    <div class="form-field"><label>Tiêu đề<em>*</em></label><input required id="newNodeTitle" placeholder="VD: Mục 1.4 — Tổng kết"></div>
+    <div class="form-field"><label>Loại tài liệu đính kèm</label><select id="newNodeAttach"><option>Chưa đính kèm</option><option>Video bài giảng</option><option>PDF / Slide</option><option>Bộ câu hỏi trắc nghiệm</option><option>Bài tập tự luận</option></select></div>
+    <p class="form-hint">ADMIN-07: mỗi cấp chỉ nên đính kèm tài liệu cùng nhóm loại để đảm bảo tính nhất quán khi hiển thị trên Portal.</p>
+    <button class="btn btn-primary" type="submit" style="width:100%">Thêm vào cây</button>
+  </form>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  const MAX_LEVEL = 5;
+  const modal = document.getElementById('addNodeModal');
+  let pendingParent = null;
+  function lock(open){ document.body.classList.toggle('locked', open); }
+
+  function bindNode(node) {
+    node.querySelector(':scope > .tree-node-row .btn-add-child')?.addEventListener('click', () => {
+      const level = Number(node.dataset.level);
+      if (level >= MAX_LEVEL) return;
+      pendingParent = node;
+      modal.classList.add('open'); lock(true);
+      document.getElementById('newNodeTitle').focus();
+    });
+    node.querySelector(':scope > .tree-node-row .btn-remove-node')?.addEventListener('click', () => {
+      node.remove(); window.bmcAdminToast('Đã xoá mục khỏi cây (mô phỏng)');
+    });
+  }
+  $$('.tree-node').forEach(bindNode);
+
+  document.getElementById('addRootNode').addEventListener('click', () => {
+    pendingParent = null; modal.classList.add('open'); lock(true);
+    document.getElementById('newNodeTitle').focus();
+  });
+
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { modal.classList.remove('open'); lock(false); }));
+  modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('open'); lock(false); } });
+
+  document.getElementById('addNodeForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const title = document.getElementById('newNodeTitle').value.trim();
+    const attach = document.getElementById('newNodeAttach').value;
+    const level = pendingParent ? Number(pendingParent.dataset.level) + 1 : 1;
+    const node = document.createElement('div');
+    node.className = 'tree-node'; node.dataset.level = String(level);
+    node.innerHTML = `<div class="tree-node-row"><span class="tree-level">${level}</span><div class="tree-node-title"><strong></strong><span></span></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con" ${level >= MAX_LEVEL ? 'disabled title="Đã đạt cấp tối đa (5)"' : ''}><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div>`;
+    node.querySelector('.tree-node-title strong').textContent = title;
+    node.querySelector('.tree-node-title span').textContent = attach === 'Chưa đính kèm' ? 'Chưa có mục con' : `Đính kèm: ${attach}`;
+    if (pendingParent) {
+      let children = pendingParent.querySelector(':scope > .tree-children');
+      if (!children) { children = document.createElement('div'); children.className = 'tree-children'; pendingParent.appendChild(children); }
+      children.appendChild(node);
+    } else {
+      document.getElementById('courseTree').appendChild(node);
+    }
+    bindNode(node);
+    node.querySelectorAll('[data-toast]').forEach(x => x.addEventListener('click', () => window.bmcAdminToast(x.dataset.toast)));
+    modal.classList.remove('open'); lock(false);
+    e.target.reset();
+    window.bmcAdminToast('Đã thêm mục vào cây nội dung');
+  });
+});
+</script>
+</body></html>

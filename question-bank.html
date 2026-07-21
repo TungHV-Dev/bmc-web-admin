@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Kho đề thi/câu hỏi</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="question-bank">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Kho đề thi/câu hỏi</span><h1>Kho đề thi &amp; câu hỏi</h1><p>Quản lý ngân hàng câu hỏi và các bộ đề dùng cho luyện tập, thi thử trên Web Portal.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-outline" type="button" data-open-modal="importModal"><svg class="icon"><use href="#i-download"/></svg>Nhập từ file</button><button class="btn btn-primary" type="button" data-open-modal="addQuestionModal"><svg class="icon"><use href="#i-plus"/></svg>Thêm câu hỏi</button></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-exam"/></svg></span></div><strong>412</strong><span>Câu hỏi trong kho</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--blue-soft);color:var(--blue)"><svg class="icon"><use href="#i-book"/></svg></span></div><strong>16</strong><span>Bộ đề đã xuất bản</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--gold-soft);color:#9a6510"><svg class="icon"><use href="#i-clock"/></svg></span></div><strong>12</strong><span>Câu hỏi chờ duyệt</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:#f3ecfb;color:#74469c"><svg class="icon"><use href="#i-shield"/></svg></span></div><strong>1</strong><span>Bộ đề Premium (cần key)</span></article>
+  </div>
+
+  <div class="bank-grid">
+    <aside class="panel bank-filter">
+      <div class="filter-section"><h3>Khối lớp</h3><div class="check-list">
+        <label><input type="checkbox" checked> Lớp 10</label><label><input type="checkbox" checked> Lớp 11</label><label><input type="checkbox" checked> Lớp 12</label><label><input type="checkbox"> Đại học</label>
+      </div></div>
+      <div class="filter-section"><h3>Chuyên đề</h3><div class="check-list">
+        <label><input type="checkbox" checked> Đạo hàm</label><label><input type="checkbox" checked> Tích phân</label><label><input type="checkbox"> Hình học không gian</label><label><input type="checkbox"> Xác suất thống kê</label>
+      </div></div>
+      <div class="filter-section"><h3>Độ khó</h3><div class="check-list">
+        <label><input type="checkbox" checked> Dễ</label><label><input type="checkbox" checked> Trung bình</label><label><input type="checkbox" checked> Khó</label>
+      </div></div>
+      <div class="filter-section"><h3>Trạng thái</h3><div class="check-list">
+        <label><input type="checkbox" checked> Đã duyệt</label><label><input type="checkbox" checked> Chờ duyệt</label>
+      </div></div>
+    </aside>
+
+    <div>
+      <div class="panel" style="margin-bottom:14px">
+        <div class="panel-head table-toolbar">
+          <div class="chip-filters"><button class="chip active">Tất cả bộ đề</button><button class="chip">Luyện tập</button><button class="chip">Thi thử</button><button class="chip">Premium</button></div>
+          <div class="inline-search" style="width:min(100%,260px)"><input placeholder="Tìm bộ đề hoặc câu hỏi"><svg class="icon"><use href="#i-search"/></svg></div>
+        </div>
+      </div>
+      <div class="qb-list">
+        <article class="panel qb-row"><span class="qb-icon"><svg class="icon"><use href="#i-exam"/></svg></span><div><h3>Đề thi thử tốt nghiệp THPT 2026 — Đề 01</h3><p>50 câu · 90 phút · Toán 12 · Đã xuất bản trên Portal</p><div class="meta-row"><span class="diff-pill diff-medium">Trung bình</span><span>32 câu đã duyệt</span></div></div><div class="row-actions"><button aria-label="Sửa" data-toast="Mở trình soạn đề (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá bộ đề (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></article>
+        <article class="panel qb-row"><span class="qb-icon"><svg class="icon"><use href="#i-exam"/></svg></span><div><h3>Đề thi thử tốt nghiệp THPT 2026 — Đề 04 <span class="role-badge role-custom">Premium</span></h3><p>50 câu · 90 phút · Toán 12 · Yêu cầu key kích hoạt (BMC-DETHI-2026)</p><div class="meta-row"><span class="diff-pill diff-hard">Khó</span><span>12 câu chờ duyệt</span></div></div><div class="row-actions"><button aria-label="Sửa" data-toast="Mở trình soạn đề (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá bộ đề (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></article>
+        <article class="panel qb-row"><span class="qb-icon"><svg class="icon"><use href="#i-book"/></svg></span><div><h3>Luyện tập chuyên đề: Đạo hàm hàm hợp</h3><p>25 câu · Không giới hạn thời gian · Chế độ luyện tập</p><div class="meta-row"><span class="diff-pill diff-easy">Dễ</span><span>25 câu đã duyệt</span></div></div><div class="row-actions"><button aria-label="Sửa" data-toast="Mở trình soạn đề (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá bộ đề (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></article>
+        <article class="panel qb-row"><span class="qb-icon"><svg class="icon"><use href="#i-book"/></svg></span><div><h3>Luyện tập chuyên đề: Tích phân cơ bản</h3><p>30 câu · Không giới hạn thời gian · Chế độ luyện tập</p><div class="meta-row"><span class="diff-pill diff-medium">Trung bình</span><span>30 câu đã duyệt</span></div></div><div class="row-actions"><button aria-label="Sửa" data-toast="Mở trình soạn đề (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá bộ đề (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></article>
+      </div>
+    </div>
+  </div>
+</template>
+
+<div class="modal-backdrop" id="addQuestionModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,560px)"><div class="modal-head"><div><h2>Thêm câu hỏi</h2><p>Câu hỏi mới sẽ ở trạng thái "Chờ duyệt" trước khi vào bộ đề.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addQuestionForm">
+    <div class="form-field"><label>Nội dung câu hỏi<em>*</em></label><textarea required placeholder="Nhập đề bài, có thể chèn công thức LaTeX ở bản production"></textarea></div>
+    <div class="form-row"><div class="form-field"><label>Chuyên đề</label><select><option>Đạo hàm</option><option>Tích phân</option><option>Hình học không gian</option><option>Xác suất thống kê</option></select></div><div class="form-field"><label>Độ khó</label><select><option>Dễ</option><option selected>Trung bình</option><option>Khó</option></select></div></div>
+    <div class="form-field"><label>Đáp án A / B / C / D<em>*</em></label><input required placeholder="A. ... | B. ... | C. ... | D. ..."></div>
+    <div class="form-field"><label>Đáp án đúng<em>*</em></label><select required><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Lưu câu hỏi (chờ duyệt)</button>
+  </form>
+</section></div>
+
+<div class="modal-backdrop" id="importModal"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>Nhập câu hỏi từ file</h2><p>Hỗ trợ file Word/Excel theo mẫu chuẩn của BMC.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <div class="modal-form">
+    <div class="captcha" style="justify-content:center;flex-direction:column;gap:8px;padding:26px;text-align:center"><svg class="icon" style="width:26px;height:26px"><use href="#i-download"/></svg><span>Kéo thả file vào đây hoặc bấm để chọn file (mô phỏng)</span></div>
+    <p class="form-hint">SEC-07: file tải lên cần kiểm tra loại, kích thước và quét malware trước khi xử lý ở backend.</p>
+    <button class="btn btn-primary" type="button" data-close-modal data-toast="Đã nhập 40 câu hỏi từ file (mô phỏng)" style="width:100%">Bắt đầu nhập</button>
+  </div>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  document.getElementById('addQuestionForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('addQuestionModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã lưu câu hỏi, đang chờ duyệt (mô phỏng)'); });
+  $$('.chip-filters .chip').forEach(c => c.addEventListener('click', () => { c.parentElement.querySelectorAll('.chip').forEach(x => x.classList.remove('active')); c.classList.add('active'); }));
+});
+</script>
+</body></html>

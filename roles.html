@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Vai trò &amp; quyền</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="roles">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Vai trò &amp; quyền</span><h1>Vai trò &amp; phân quyền</h1><p>4 vai trò mặc định của hệ thống và các vai trò tuỳ chỉnh do Admin tạo, theo mô hình permission theo từng module.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-primary" type="button" data-open-modal="addRoleModal"><svg class="icon"><use href="#i-plus"/></svg>Tạo vai trò tuỳ chỉnh</button></div>
+  </div>
+
+  <div class="role-card-grid">
+    <article class="role-card"><span class="role-card-icon" style="background:var(--red-soft);color:var(--red)"><svg class="icon"><use href="#i-shield"/></svg></span><h3>Admin</h3><p>Toàn quyền quản trị hệ thống, người dùng, vai trò, nội dung và cấu hình.</p><div class="role-card-foot"><span>Vai trò mặc định</span><span>4 người</span></div></article>
+    <article class="role-card"><span class="role-card-icon" style="background:var(--blue-soft);color:var(--blue)"><svg class="icon"><use href="#i-book"/></svg></span><h3>Giáo viên</h3><p>Quản lý khoá học, nội dung giảng dạy và kho đề theo phạm vi được cấp.</p><div class="role-card-foot"><span>Vai trò mặc định</span><span>18 người</span></div></article>
+    <article class="role-card"><span class="role-card-icon" style="background:var(--gold-soft);color:#9a6510"><svg class="icon"><use href="#i-users"/></svg></span><h3>Trợ giảng</h3><p>Hỗ trợ quản lý nội dung và học viên theo quyền được giáo viên/Admin cấp.</p><div class="role-card-foot"><span>Vai trò mặc định</span><span>34 người</span></div></article>
+    <article class="role-card"><span class="role-card-icon" style="background:var(--teal-soft);color:#16796d"><svg class="icon"><use href="#i-grid"/></svg></span><h3>Học sinh</h3><p>Học, luyện tập, thi thử, hỏi đáp và truy cập nội dung được cấp quyền.</p><div class="role-card-foot"><span>Vai trò mặc định</span><span>1.140 người</span></div></article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Vai trò tuỳ chỉnh</h2><span class="chip active">3 vai trò</span></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Vai trò</th><th>Kế thừa từ</th><th>Số người</th><th>Cập nhật</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><span class="role-badge role-custom">Trưởng nhóm trợ giảng</span></td><td>Trợ giảng</td><td>2</td><td>Hôm nay</td><td><div class="row-actions"><button aria-label="Sửa quyền" data-open-modal="permMatrixModal"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá vai trò (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        <tr><td><span class="role-badge role-custom">Biên tập nội dung</span></td><td>Giáo viên</td><td>5</td><td>3 ngày trước</td><td><div class="row-actions"><button aria-label="Sửa quyền" data-open-modal="permMatrixModal"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá vai trò (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        <tr><td><span class="role-badge role-custom">Kiểm duyệt Hỏi đáp</span></td><td>Trợ giảng</td><td>3</td><td>1 tuần trước</td><td><div class="row-actions"><button aria-label="Sửa quyền" data-open-modal="permMatrixModal"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá vai trò (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="panel section-block">
+    <div class="panel-head"><h2>Ma trận quyền — Vai trò: Trợ giảng</h2><span class="chip">Xem &amp; chỉnh sửa nhanh</span></div>
+    <div class="panel-body table-wrap">
+      <table class="perm-matrix">
+        <thead><tr><th>Module</th><th>Xem</th><th>Tạo</th><th>Sửa</th><th>Xoá</th></tr></thead>
+        <tbody>
+          <tr><td class="perm-module">Người dùng<small>Danh sách và hồ sơ học viên</small></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+          <tr><td class="perm-module">Khoá học<small>Nội dung và cấu trúc bài học</small></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td></tr>
+          <tr><td class="perm-module">Kho đề thi/câu hỏi<small>Ngân hàng câu hỏi</small></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td></tr>
+          <tr><td class="perm-module">Hỏi đáp<small>Câu hỏi cộng đồng</small></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td></tr>
+          <tr><td class="perm-module">Nội dung website<small>Trang chủ, sách, tài liệu</small></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+          <tr><td class="perm-module">Người dùng &amp; vai trò<small>Quản trị hệ thống</small></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+        </tbody>
+      </table>
+      <p class="form-hint" style="margin-top:12px">SEC-02/SEC-03: mọi API cần kiểm tra permission tương ứng và quyền sở hữu tài nguyên, không chỉ dựa trên tên vai trò.</p>
+      <button class="btn btn-primary" type="button" data-toast="Đã lưu thay đổi quyền (mô phỏng)" style="margin-top:14px">Lưu thay đổi</button>
+    </div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addRoleModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,560px)"><div class="modal-head"><div><h2>Tạo vai trò tuỳ chỉnh</h2><p>Đặt tên vai trò, chọn vai trò kế thừa và tinh chỉnh permission theo module.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addRoleForm">
+    <div class="form-row"><div class="form-field"><label>Tên vai trò<em>*</em></label><input required placeholder="VD: Trưởng nhóm trợ giảng"></div><div class="form-field"><label>Kế thừa quyền từ</label><select><option>Không kế thừa</option><option>Admin</option><option>Giáo viên</option><option selected>Trợ giảng</option><option>Học sinh</option></select></div></div>
+    <div class="table-wrap"><table class="perm-matrix">
+      <thead><tr><th>Module</th><th>Xem</th><th>Tạo</th><th>Sửa</th><th>Xoá</th></tr></thead>
+      <tbody>
+        <tr><td class="perm-module">Người dùng</td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+        <tr><td class="perm-module">Khoá học</td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td></tr>
+        <tr><td class="perm-module">Kho đề thi/câu hỏi</td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+        <tr><td class="perm-module">Nội dung website</td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+      </tbody>
+    </table></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Tạo vai trò</button>
+  </form>
+</section></div>
+
+<div class="modal-backdrop" id="permMatrixModal"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>Chỉnh sửa quyền</h2><p>Thay đổi sẽ áp dụng cho toàn bộ người dùng thuộc vai trò này.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <p class="form-hint" style="margin-top:14px">Bản demo dùng chung ma trận quyền hiển thị phía dưới trang. Đóng cửa sổ này và chỉnh trực tiếp trong bảng "Ma trận quyền" bên dưới.</p>
+  <button class="btn btn-outline" type="button" data-close-modal style="width:100%;margin-top:8px">Đóng</button>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  document.getElementById('addRoleForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('addRoleModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã tạo vai trò tuỳ chỉnh (mô phỏng)'); });
+});
+</script>
+</body></html>

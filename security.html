@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Bảo mật</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="security">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Bảo mật</span><h1>Bảo mật &amp; xác thực hai lớp</h1><p>Cấu hình TOTP cho tài khoản quản trị và các ngưỡng giới hạn đăng nhập theo yêu cầu ADMIN-09, SEC-10, SEC-11.</p></div>
+  </div>
+
+  <section class="panel section-block">
+    <div class="panel-head"><h2>Xác thực hai lớp (TOTP) — Tài khoản của bạn</h2><span class="status-pill"><i class="status-dot on"></i>Đã bật</span></div>
+    <div class="totp-card">
+      <div class="qr-box">Mã QR minh hoạ — quét bằng Google Authenticator</div>
+      <div>
+        <p style="margin:0 0 6px;font-size:12px">1. Quét mã QR bằng Google Authenticator hoặc ứng dụng tương thích TOTP.</p>
+        <p style="margin:0 0 12px;font-size:12px">2. Lưu lại các mã dự phòng bên dưới — mỗi mã chỉ dùng được một lần khi mất thiết bị xác thực.</p>
+        <div class="backup-codes">
+          <span>7F2K-91QZ</span><span>A03M-88TL</span><span>C51D-22XY</span><span>Q9WE-40PL</span><span>Z12B-77RS</span><span>K88N-05VC</span>
+        </div>
+        <div style="display:flex;gap:9px;margin-top:16px">
+          <button class="btn btn-outline" type="button" data-toast="Đã tạo lại mã dự phòng (mô phỏng)">Tạo lại mã dự phòng</button>
+          <button class="btn btn-outline" type="button" data-toast="Đã tắt TOTP cho tài khoản này (mô phỏng)">Tắt TOTP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel section-block">
+    <div class="panel-head"><h2>Bắt buộc TOTP theo vai trò</h2></div>
+    <div class="panel-body" style="display:grid;gap:0">
+      <div class="switch-row"><div><strong>Admin</strong><span>Luôn bắt buộc, không thể tắt</span></div><div class="switch"><input type="checkbox" id="totp-admin" checked disabled><label for="totp-admin"></label></div></div>
+      <div class="switch-row"><div><strong>Giáo viên</strong><span>Khuyến nghị bật với tài khoản có quyền xuất bản nội dung</span></div><div class="switch"><input type="checkbox" id="totp-teacher" checked><label for="totp-teacher"></label></div></div>
+      <div class="switch-row"><div><strong>Trợ giảng</strong><span>Tuỳ chọn theo chính sách trung tâm</span></div><div class="switch"><input type="checkbox" id="totp-ta"><label for="totp-ta"></label></div></div>
+      <div class="switch-row"><div><strong>Học sinh</strong><span>Không bắt buộc trong phạm vi demo hiện tại</span></div><div class="switch"><input type="checkbox" id="totp-student"><label for="totp-student"></label></div></div>
+    </div>
+  </section>
+
+  <div class="dashboard-strip" style="align-items:start">
+    <section class="panel">
+      <div class="panel-head"><h3>Giới hạn đăng nhập sai (SEC-10)</h3></div>
+      <div class="panel-body form-panel">
+        <div class="form-row"><div class="form-field"><label>Số lần đăng nhập sai tối đa</label><input type="number" value="5"></div><div class="form-field"><label>Thời gian khoá tài khoản</label><select><option>15 phút</option><option selected>30 phút</option><option>1 giờ</option><option>Đến khi Admin mở khoá</option></select></div></div>
+        <div class="form-row"><div class="form-field"><label>Số lần đổi mật khẩu tối đa / ngày</label><input type="number" value="3"></div><div class="form-field"><label>Cơ chế khôi phục</label><select><option selected>Email xác thực (Gmail tạm thời — PORTAL-13)</option><option>Câu hỏi bảo mật</option></select></div></div>
+        <button class="btn btn-primary" type="button" data-toast="Đã lưu cấu hình bảo mật (mô phỏng)">Lưu cấu hình</button>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Tài khoản đang bị khoá</h3></div>
+      <div class="panel-body" style="display:grid;gap:9px">
+        <div class="side-item"><span class="side-item-icon"><svg class="icon"><use href="#i-lock"/></svg></span><span><strong>hocsinh_test09</strong><span>5 lần đăng nhập sai · Khoá lúc 22:18 hôm qua</span></span></div>
+        <div class="side-item"><span class="side-item-icon"><svg class="icon"><use href="#i-lock"/></svg></span><span><strong>demo_user_22</strong><span>5 lần đăng nhập sai · Khoá lúc 19:05 hôm qua</span></span></div>
+        <button class="btn btn-outline" type="button" data-toast="Đã mở khoá tất cả (mô phỏng)" style="width:100%">Mở khoá tất cả</button>
+      </div>
+    </section>
+  </div>
+</template>
+<script src="shared-admin.js" defer></script>
+</body></html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Chứng chỉ &amp; huy hiệu</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="certificates">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Chứng chỉ &amp; huy hiệu</span><h1>Chứng chỉ &amp; huy hiệu</h1><p>Thiết kế mẫu chứng chỉ, huy hiệu thành tích và gán điều kiện đạt được cho từng khoá học/lớp học.</p></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-award"/></svg></span></div><strong>6</strong><span>Mẫu chứng chỉ</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--teal-soft);color:#0e6e60"><svg class="icon"><use href="#i-check"/></svg></span></div><strong>9</strong><span>Mẫu huy hiệu</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--blue-soft);color:#1c4894"><svg class="icon"><use href="#i-users"/></svg></span></div><strong>842</strong><span>Lượt đã cấp trong năm</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--gold-soft);color:#8a5c0d"><svg class="icon"><use href="#i-layout"/></svg></span></div><strong>7</strong><span>Khoá học/lớp đã gán</span></article>
+  </div>
+
+  <section class="panel">
+    <div class="tabs" data-tabs>
+      <button class="tab active" data-tab="certs">Chứng chỉ</button>
+      <button class="tab" data-tab="badges">Huy hiệu</button>
+      <button class="tab" data-tab="assign">Gán cho khoá học/lớp học</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="certs">
+      <div class="page-actions" style="justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary" type="button" data-open-modal="addCertModal"><svg class="icon"><use href="#i-plus"/></svg>Tạo chứng chỉ</button></div>
+      <div class="cert-grid">
+        <article class="cert-card"><span class="cert-icon">🎓</span><h3>Chứng chỉ hoàn thành khoá học</h3><p>Cấp khi học viên hoàn thành 100% bài học và đạt tối thiểu 70% bài kiểm tra cuối khoá.</p><div class="cert-meta"><span>Đã cấp</span><strong>318 lượt</strong></div></article>
+        <article class="cert-card"><span class="cert-icon">📜</span><h3>Chứng chỉ tổng ôn THPT</h3><p>Cấp cho học viên hoàn thành chương trình tổng ôn và tham gia đủ 3 kỳ thi thử.</p><div class="cert-meta"><span>Đã cấp</span><strong>204 lượt</strong></div></article>
+        <article class="cert-card"><span class="cert-icon">🏆</span><h3>Chứng chỉ Thủ khoa lớp học</h3><p>Cấp cho học viên đạt điểm cao nhất lớp trong kỳ thi thử cuối khoá.</p><div class="cert-meta"><span>Đã cấp</span><strong>14 lượt</strong></div></article>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="badges">
+      <div class="page-actions" style="justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary" type="button" data-open-modal="addBadgeModal"><svg class="icon"><use href="#i-plus"/></svg>Tạo huy hiệu</button></div>
+      <div class="cert-grid">
+        <article class="cert-card"><span class="cert-icon badge">🔥</span><h3>Chuỗi học 7 ngày</h3><p>Đạt được khi học viên học liên tục ít nhất 7 ngày không gián đoạn.</p><div class="cert-meta"><span>Đã đạt</span><strong>452 học viên</strong></div></article>
+        <article class="cert-card"><span class="cert-icon badge">⚡</span><h3>Luyện đề chăm chỉ</h3><p>Hoàn thành từ 20 bộ đề luyện tập trở lên trong một chuyên đề.</p><div class="cert-meta"><span>Đã đạt</span><strong>167 học viên</strong></div></article>
+        <article class="cert-card"><span class="cert-icon badge">💯</span><h3>Điểm tuyệt đối</h3><p>Đạt điểm 10/10 trong một bài thi thử bất kỳ trên hệ thống.</p><div class="cert-meta"><span>Đã đạt</span><strong>38 học viên</strong></div></article>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="assign">
+      <div class="page-actions" style="justify-content:flex-end;margin-bottom:14px"><button class="btn btn-primary" type="button" data-open-modal="assignModal"><svg class="icon"><use href="#i-plus"/></svg>Gán mới</button></div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Khoá học / Lớp học</th><th>Chứng chỉ được gán</th><th>Huy hiệu điều kiện</th><th>Điều kiện cấp</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><strong>Giải tích 1 — Nắm chắc nền tảng</strong><br><span class="muted" style="font-size:11px">Khoá học</span></td><td><div class="tag-list"><span class="tag-chip">Chứng chỉ hoàn thành khoá học</span></div></td><td><div class="tag-list"><span class="tag-chip badge-tag">Chuỗi học 7 ngày</span><span class="tag-chip badge-tag">Luyện đề chăm chỉ</span></div></td><td>Hoàn thành ≥ 100% bài học, điểm cuối khoá ≥ 70%</td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="assignModal" data-toast="Đã mở form chỉnh sửa gán (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã gỡ gán (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+          <tr><td><strong>ON12 — Tổng ôn 12 tối T3·5·7</strong><br><span class="muted" style="font-size:11px">Lớp học</span></td><td><div class="tag-list"><span class="tag-chip">Chứng chỉ tổng ôn THPT</span></div></td><td><div class="tag-list"><span class="tag-chip empty">Chưa gán huy hiệu</span></div></td><td>Tham gia đủ 3 kỳ thi thử, có mặt ≥ 80% buổi học</td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="assignModal" data-toast="Đã mở form chỉnh sửa gán (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã gỡ gán (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+          <tr><td><strong>GT01 — Giải tích 1 sáng T2·4·6</strong><br><span class="muted" style="font-size:11px">Lớp học</span></td><td><div class="tag-list"><span class="tag-chip empty">Chưa gán chứng chỉ</span></div></td><td><div class="tag-list"><span class="tag-chip badge-tag">Điểm tuyệt đối</span></div></td><td>Đạt điểm 10/10 ở bất kỳ bài thi thử nào trong lớp</td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="assignModal" data-toast="Đã mở form chỉnh sửa gán (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã gỡ gán (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addCertModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,560px)"><div class="modal-head"><div><h2>Tạo chứng chỉ</h2><p>Chứng chỉ có thể gán cho một hoặc nhiều khoá học/lớp học sau khi tạo.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addCertForm">
+    <div class="form-field"><label>Tên chứng chỉ<em>*</em></label><input required placeholder="VD: Chứng chỉ hoàn thành khoá học"></div>
+    <div class="form-field"><label>Mô tả điều kiện đạt được</label><textarea placeholder="VD: Hoàn thành 100% bài học và đạt tối thiểu 70% bài kiểm tra cuối khoá"></textarea></div>
+    <div class="form-row"><div class="form-field"><label>Tỉ lệ hoàn thành tối thiểu</label><input type="number" placeholder="VD: 100" value="100"></div><div class="form-field"><label>Điểm cuối khoá tối thiểu</label><input type="number" placeholder="VD: 70" value="70"></div></div>
+    <div class="form-field"><label>Ảnh mẫu chứng chỉ</label><div class="captcha" style="justify-content:center;gap:8px"><svg class="icon" style="width:20px;height:20px"><use href="#i-file"/></svg><span>Tải ảnh/PDF mẫu (mô phỏng)</span></div></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Lưu chứng chỉ</button>
+  </form>
+</section></div>
+
+<div class="modal-backdrop" id="addBadgeModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,560px)"><div class="modal-head"><div><h2>Tạo huy hiệu</h2><p>Huy hiệu ghi nhận thành tích nhỏ, khuyến khích học viên duy trì động lực học tập.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addBadgeForm">
+    <div class="form-row"><div class="form-field"><label>Tên huy hiệu<em>*</em></label><input required placeholder="VD: Chuỗi học 7 ngày"></div><div class="form-field"><label>Biểu tượng (emoji minh hoạ)</label><input placeholder="VD: 🔥"></div></div>
+    <div class="form-field"><label>Điều kiện đạt được</label><textarea placeholder="VD: Học liên tục 7 ngày không gián đoạn"></textarea></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Lưu huy hiệu</button>
+  </form>
+</section></div>
+
+<div class="modal-backdrop" id="assignModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,580px)"><div class="modal-head"><div><h2>Gán chứng chỉ/huy hiệu</h2><p>Chọn đối tượng áp dụng và điều kiện cấp cụ thể.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="assignForm">
+    <div class="form-field"><label>Áp dụng cho</label><div class="check-list" style="grid-template-columns:1fr 1fr;display:grid">
+      <label><input type="radio" name="assignType" checked> Khoá học</label><label><input type="radio" name="assignType"> Lớp học</label>
+    </div></div>
+    <div class="form-field"><label>Chọn khoá học / lớp học<em>*</em></label><select required>
+      <option value="">Chọn đối tượng</option><option>Giải tích 1 — Nắm chắc nền tảng</option><option>Tổng ôn THPT theo chuyên đề</option><option>GT01 — Giải tích 1 sáng T2·4·6</option><option>ON12 — Tổng ôn 12 tối T3·5·7</option>
+    </select></div>
+    <div class="form-row"><div class="form-field"><label>Chứng chỉ gán kèm</label><select><option value="">Không gán chứng chỉ</option><option>Chứng chỉ hoàn thành khoá học</option><option>Chứng chỉ tổng ôn THPT</option><option>Chứng chỉ Thủ khoa lớp học</option></select></div><div class="form-field"><label>Huy hiệu điều kiện</label><select><option value="">Không gán huy hiệu</option><option>Chuỗi học 7 ngày</option><option>Luyện đề chăm chỉ</option><option>Điểm tuyệt đối</option></select></div></div>
+    <div class="form-field"><label>Mô tả điều kiện cấp</label><textarea placeholder="VD: Hoàn thành ≥ 100% bài học, điểm cuối khoá ≥ 70%"></textarea></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Lưu gán</button>
+  </form>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-tab]').forEach(tab => tab.addEventListener('click', () => {
+    $$('[data-tab]').forEach(x => x.classList.toggle('active', x === tab));
+    $$('[data-panel]').forEach(x => x.classList.toggle('active', x.dataset.panel === tab.dataset.tab));
+  }));
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  document.getElementById('addCertForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('addCertModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã lưu chứng chỉ (mô phỏng)'); });
+  document.getElementById('addBadgeForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('addBadgeModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã lưu huy hiệu (mô phỏng)'); });
+  document.getElementById('assignForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('assignModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã gán chứng chỉ/huy hiệu (mô phỏng)'); });
+});
+</script>
+</body></html>

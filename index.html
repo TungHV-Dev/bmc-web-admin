@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Dashboard</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="dashboard">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin</span><h1>Chào Admin, đây là tổng quan hệ thống hôm nay.</h1><p>Số liệu bên dưới là dữ liệu minh hoạ, dùng để trình diễn bố cục Dashboard.</p></div>
+    <div class="admin-page-actions"><a class="btn btn-outline" href="content.html">Quản trị nội dung</a><a class="btn btn-primary" href="courses.html"><svg class="icon"><use href="#i-plus"/></svg>Tạo khoá học</a></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-users"/></svg></span><span class="trend up"><svg class="icon" style="width:12px;height:12px"><use href="#i-arrow"/></svg>+12%</span></div><strong>1.284</strong><span>Người dùng đang hoạt động</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-book"/></svg></span><span class="trend up">+3</span></div><strong>26</strong><span>Khoá học đã xuất bản</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-exam"/></svg></span><span class="trend up">+18</span></div><strong>412</strong><span>Câu hỏi trong kho đề</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-shield"/></svg></span><span class="trend down">-2</span></div><strong>7</strong><span>Cảnh báo bảo mật cần xem</span></article>
+  </div>
+
+  <div class="dashboard-strip" style="align-items:start">
+    <section class="panel">
+      <div class="panel-head"><h2>Hoạt động gần đây</h2><span class="chip active">7 ngày qua</span></div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Người dùng</th><th>Hành động</th><th>Đối tượng</th><th>Thời gian</th></tr></thead>
+        <tbody>
+          <tr><td><div class="cell-user"><span class="cell-avatar">TL</span><div><strong>Trần Lan</strong><span>Giáo viên</span></div></div></td><td>Xuất bản khoá học</td><td>Giải tích 1 — Nắm chắc nền tảng</td><td>10 phút trước</td></tr>
+          <tr><td><div class="cell-user"><span class="cell-avatar">AD</span><div><strong>Admin BMC</strong><span>Admin</span></div></div></td><td>Tạo vai trò tuỳ chỉnh</td><td>Trưởng nhóm trợ giảng</td><td>1 giờ trước</td></tr>
+          <tr><td><div class="cell-user"><span class="cell-avatar">PH</span><div><strong>Phạm Huy</strong><span>Trợ giảng</span></div></div></td><td>Thêm câu hỏi mới</td><td>Đề thi thử THPT 2026 - Đề 04</td><td>3 giờ trước</td></tr>
+          <tr><td><div class="cell-user"><span class="cell-avatar">NA</span><div><strong>Ngọc Anh</strong><span>Học sinh</span></div></div></td><td>Kích hoạt bộ đề</td><td>Key BMC-DETHI-2026</td><td>5 giờ trước</td></tr>
+          <tr><td><div class="cell-user"><span class="cell-avatar">AD</span><div><strong>Admin BMC</strong><span>Admin</span></div></div></td><td>Khoá tài khoản</td><td>hocsinh_test09 (đăng nhập sai nhiều lần)</td><td>Hôm qua</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <div style="display:grid;gap:16px">
+      <section class="panel">
+        <div class="panel-head"><h3>Phân bổ vai trò</h3></div>
+        <div class="panel-body" style="display:grid;gap:12px">
+          <div><div class="progress-label"><span>Học sinh</span><span>1.140</span></div><div class="progress"><i style="width:89%;background:var(--teal)"></i></div></div>
+          <div><div class="progress-label"><span>Giáo viên</span><span>18</span></div><div class="progress"><i style="width:12%;background:var(--blue)"></i></div></div>
+          <div><div class="progress-label"><span>Trợ giảng</span><span>34</span></div><div class="progress"><i style="width:20%;background:#f5a623"></i></div></div>
+          <div><div class="progress-label"><span>Admin</span><span>4</span></div><div class="progress"><i style="width:6%"></i></div></div>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h3>Cần xử lý</h3></div>
+        <div class="panel-body" style="display:grid;gap:9px">
+          <div class="side-item"><span class="side-item-icon"><svg class="icon"><use href="#i-shield"/></svg></span><span><strong>5 tài khoản đăng nhập sai ≥ 3 lần</strong><span>Xem tại Bảo mật</span></span></div>
+          <div class="side-item"><span class="side-item-icon"><svg class="icon"><use href="#i-exam"/></svg></span><span><strong>12 câu hỏi chờ duyệt</strong><span>Kho đề thi/câu hỏi</span></span></div>
+          <div class="side-item"><span class="side-item-icon"><svg class="icon"><use href="#i-file"/></svg></span><span><strong>3 tài liệu chờ xuất bản</strong><span>Nội dung website</span></span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script src="shared-admin.js" defer></script>
+</body></html>

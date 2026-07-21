@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Đăng nhập</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="login">
+<div class="admin-login-shell">
+  <section class="admin-login-visual">
+    <span class="demo-pill" style="width:fit-content">Bản demo Web Admin</span>
+    <h2 style="margin-top:16px">Quản trị toàn bộ hệ thống học tập &amp; luyện thi BMC từ một nơi.</h2>
+    <p>Người dùng, phân quyền, kho đề thi, khoá học và nội dung trang chủ — tất cả trong một bảng điều khiển dành cho Admin, Giáo viên và Trợ giảng.</p>
+    <div class="admin-login-feat">
+      <span><svg class="icon"><use href="#i-check"/></svg> 4 vai trò mặc định + vai trò tuỳ chỉnh theo permission</span>
+      <span><svg class="icon"><use href="#i-check"/></svg> Quản lý cấu trúc khoá học dạng cây, tối đa 5 cấp</span>
+      <span><svg class="icon"><use href="#i-check"/></svg> Bảo vệ tài khoản quản trị bằng TOTP</span>
+    </div>
+  </section>
+  <section class="admin-login-form-wrap">
+    <div class="admin-login-card">
+      <span class="brand-mark" style="width:48px;height:48px"><img src="assets/logo.jpeg" alt=""></span>
+      <h1 id="loginHeading">Đăng nhập quản trị</h1>
+      <p id="loginSub">Nhập tài khoản quản trị để tiếp tục.</p>
+
+      <form class="login-step active" id="stepCreds">
+        <div class="demo-credentials">Tài khoản demo: <strong>admin</strong> · Mật khẩu: <strong>admin123</strong></div>
+        <div class="form-field"><label for="loginUser">Tên đăng nhập</label><input id="loginUser" autocomplete="username" placeholder="admin" required></div>
+        <div class="form-field"><label for="loginPass">Mật khẩu</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="admin123" required></div>
+        <p class="auth-error" id="credsError" role="alert"></p>
+        <button class="btn btn-primary" type="submit" style="width:100%">Tiếp tục</button>
+      </form>
+
+      <form class="login-step" id="stepOtp">
+        <div class="demo-credentials">Mã OTP demo (Google Authenticator giả lập): <strong>123456</strong></div>
+        <div class="form-field"><label>Nhập mã xác thực 6 số</label>
+          <div class="otp-inputs">
+            <input maxlength="1" inputmode="numeric" class="otp-digit"><input maxlength="1" inputmode="numeric" class="otp-digit"><input maxlength="1" inputmode="numeric" class="otp-digit"><input maxlength="1" inputmode="numeric" class="otp-digit"><input maxlength="1" inputmode="numeric" class="otp-digit"><input maxlength="1" inputmode="numeric" class="otp-digit">
+          </div>
+        </div>
+        <p class="auth-error" id="otpError" role="alert"></p>
+        <button class="btn btn-primary" type="submit" style="width:100%">Xác thực &amp; vào hệ thống</button>
+        <button class="btn btn-outline" type="button" id="backToCreds" style="width:100%">Quay lại</button>
+      </form>
+
+      <div class="security-note"><svg class="icon"><use href="#i-lock"/></svg><span>Bản production sẽ giới hạn số lần đăng nhập/OTP sai, khoá tạm thời tài khoản và ghi audit log theo SEC-10 và ADMIN-09.</span></div>
+    </div>
+  </section>
+</div>
+<script src="shared-admin.js" defer></script>
+<script defer>
+(() => {
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const SESSION_KEY = 'bmc_admin_session_v1';
+  const WINDOW_PREFIX = 'BMC_ADMIN_SESSION:';
+  function writeSession(next) {
+    window.name = WINDOW_PREFIX + JSON.stringify(next);
+    try { localStorage.setItem(SESSION_KEY, JSON.stringify(next)); } catch (_) {}
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const stepCreds = $('#stepCreds'), stepOtp = $('#stepOtp');
+    stepCreds.addEventListener('submit', e => {
+      e.preventDefault();
+      const user = $('#loginUser').value.trim(), pass = $('#loginPass').value;
+      if (user !== 'admin' || pass !== 'admin123') { $('#credsError').textContent = 'Tài khoản hoặc mật khẩu chưa đúng. Vui lòng dùng thông tin demo phía trên.'; return; }
+      stepCreds.classList.remove('active'); stepOtp.classList.add('active');
+      $('#loginHeading').textContent = 'Xác thực hai lớp (TOTP)';
+      $('#loginSub').textContent = 'Mở Google Authenticator (giả lập) và nhập mã 6 số.';
+      $('.otp-digit').focus();
+    });
+    $('#backToCreds').addEventListener('click', () => {
+      stepOtp.classList.remove('active'); stepCreds.classList.add('active');
+      $('#loginHeading').textContent = 'Đăng nhập quản trị'; $('#loginSub').textContent = 'Nhập tài khoản quản trị để tiếp tục.';
+    });
+    const digits = $$('.otp-digit');
+    digits.forEach((d, i) => d.addEventListener('input', () => {
+      d.value = d.value.replace(/\D/g, '').slice(0, 1);
+      if (d.value && digits[i + 1]) digits[i + 1].focus();
+    }));
+    digits.forEach((d, i) => d.addEventListener('keydown', e => { if (e.key === 'Backspace' && !d.value && digits[i - 1]) digits[i - 1].focus(); }));
+    stepOtp.addEventListener('submit', e => {
+      e.preventDefault();
+      const code = digits.map(d => d.value).join('');
+      if (code !== '123456') { $('#otpError').textContent = 'Mã OTP chưa đúng. Vui lòng dùng mã demo phía trên.'; return; }
+      writeSession({ authenticated: true, name: 'Admin BMC' });
+      location.href = 'index.html';
+    });
+  });
+})();
+</script>
+</body></html>

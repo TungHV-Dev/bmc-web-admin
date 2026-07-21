@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Khoá học</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="courses">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Khoá học</span><h1>Quản lý khoá học</h1><p>Tạo, chỉnh sửa và chọn vị trí hiển thị khoá học trên Web Portal.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-primary" type="button" data-open-modal="addCourseModal"><svg class="icon"><use href="#i-plus"/></svg>Tạo khoá học</button></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-book"/></svg></span></div><strong>26</strong><span>Khoá học đã xuất bản</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--gold-soft);color:#9a6510"><svg class="icon"><use href="#i-clock"/></svg></span></div><strong>4</strong><span>Đang soạn thảo</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--blue-soft);color:var(--blue)"><svg class="icon"><use href="#i-layout"/></svg></span></div><strong>5</strong><span>Vị trí hiển thị trang chủ</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:#eaf7ec;color:#3a8949"><svg class="icon"><use href="#i-grid"/></svg></span></div><strong>5</strong><span>Cấp cây nội dung tối đa</span></article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head table-toolbar">
+      <div class="chip-filters"><button class="chip active">Tất cả</button><button class="chip">Đã xuất bản</button><button class="chip">Soạn thảo</button><button class="chip">Miễn phí</button></div>
+      <div class="inline-search" style="width:min(100%,260px)"><input placeholder="Tìm khoá học"><svg class="icon"><use href="#i-search"/></svg></div>
+    </div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Khoá học</th><th>Cấp học</th><th>Trạng thái</th><th>Vị trí hiển thị</th><th>Số bài học</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><strong>Giải tích 1 — Nắm chắc nền tảng</strong></td><td>Đại học</td><td><span class="status-pill"><i class="status-dot on"></i>Đã xuất bản</span></td><td>Trang chủ, Danh mục khoá học</td><td>28 bài</td><td><div class="row-actions"><a href="course-builder.html" aria-label="Cấu trúc nội dung"><svg class="icon"><use href="#i-layout"/></svg></a><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button></div></td></tr>
+        <tr><td><strong>Tổng ôn THPT theo chuyên đề</strong></td><td>Lớp 12</td><td><span class="status-pill"><i class="status-dot on"></i>Đã xuất bản</span></td><td>Trang chủ, Danh mục khoá học</td><td>40 bài</td><td><div class="row-actions"><a href="course-builder.html" aria-label="Cấu trúc nội dung"><svg class="icon"><use href="#i-layout"/></svg></a><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button></div></td></tr>
+        <tr><td><strong>Hình học không gian bằng tư duy</strong></td><td>Lớp 11–12</td><td><span class="status-pill"><i class="status-dot on"></i>Đã xuất bản</span></td><td>Danh mục khoá học</td><td>18 bài</td><td><div class="row-actions"><a href="course-builder.html" aria-label="Cấu trúc nội dung"><svg class="icon"><use href="#i-layout"/></svg></a><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button></div></td></tr>
+        <tr><td><strong>Đại số tuyến tính căn bản</strong></td><td>Đại học</td><td><span class="status-pill"><i class="status-dot off"></i>Soạn thảo</span></td><td>Chưa hiển thị</td><td>6 bài</td><td><div class="row-actions"><a href="course-builder.html" aria-label="Cấu trúc nội dung"><svg class="icon"><use href="#i-layout"/></svg></a><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button></div></td></tr>
+        <tr><td><strong>Xác suất thống kê nhập môn</strong></td><td>Lớp 12</td><td><span class="status-pill"><i class="status-dot off"></i>Soạn thảo</span></td><td>Chưa hiển thị</td><td>3 bài</td><td><div class="row-actions"><a href="course-builder.html" aria-label="Cấu trúc nội dung"><svg class="icon"><use href="#i-layout"/></svg></a><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button></div></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addCourseModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,560px)"><div class="modal-head"><div><h2>Tạo khoá học</h2><p>Sau khi tạo, dùng "Cấu trúc nội dung" để xây dựng cây bài học tối đa 5 cấp.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addCourseForm">
+    <div class="form-field"><label>Tên khoá học<em>*</em></label><input required placeholder="VD: Giải tích 2 — Chuỗi và tích phân bội"></div>
+    <div class="form-row"><div class="form-field"><label>Cấp học</label><select><option>Lớp 10</option><option>Lớp 11</option><option>Lớp 12</option><option>Đại học</option></select></div><div class="form-field"><label>Giảng viên phụ trách</label><select><option>Giáo viên BMC</option><option>Trần Lan</option></select></div></div>
+    <div class="form-field"><label>Mô tả ngắn</label><textarea placeholder="Mô tả hiển thị trên trang danh mục khoá học"></textarea></div>
+    <div class="form-field"><label>Vị trí hiển thị</label><div class="check-list" style="grid-template-columns:1fr 1fr;display:grid">
+      <label><input type="checkbox" checked> Trang chủ — Khoá học nổi bật</label><label><input type="checkbox" checked> Danh mục khoá học</label>
+    </div></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Tạo khoá học &amp; mở trình xây dựng nội dung</button>
+  </form>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  document.getElementById('addCourseForm')?.addEventListener('submit', e => { e.preventDefault(); location.href = 'course-builder.html'; });
+  $$('.chip-filters .chip').forEach(c => c.addEventListener('click', () => { c.parentElement.querySelectorAll('.chip').forEach(x => x.classList.remove('active')); c.classList.add('active'); }));
+});
+</script>
+</body></html>

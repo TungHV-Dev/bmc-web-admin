@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Người dùng</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="users">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon"><use href="#i-chevron" style="transform:rotate(-90deg)"/></svg>Người dùng</span><h1>Quản lý người dùng</h1><p>Tạo, tìm kiếm, gán vai trò và khoá/mở tài khoản học sinh, giáo viên, trợ giảng.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-primary" type="button" data-open-modal="addUserModal"><svg class="icon"><use href="#i-plus"/></svg>Thêm người dùng</button></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-users"/></svg></span></div><strong>1.284</strong><span>Tổng người dùng</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--teal-soft);color:var(--teal)"><svg class="icon"><use href="#i-check"/></svg></span></div><strong>1.251</strong><span>Đang hoạt động</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--red-soft);color:var(--red)"><svg class="icon"><use href="#i-lock"/></svg></span></div><strong>9</strong><span>Đang bị khoá</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:#f3ecfb;color:#74469c"><svg class="icon"><use href="#i-shield"/></svg></span></div><strong>3</strong><span>Vai trò tuỳ chỉnh</span></article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head table-toolbar">
+      <div class="chip-filters">
+        <button class="chip active" data-role-filter="all">Tất cả</button>
+        <button class="chip" data-role-filter="admin">Admin</button>
+        <button class="chip" data-role-filter="teacher">Giáo viên</button>
+        <button class="chip" data-role-filter="ta">Trợ giảng</button>
+        <button class="chip" data-role-filter="student">Học sinh</button>
+      </div>
+      <div class="inline-search" style="width:min(100%,280px)"><input id="userSearch" placeholder="Tìm theo tên hoặc email"><svg class="icon"><use href="#i-search"/></svg></div>
+    </div>
+    <div class="table-wrap"><table class="data-table" id="userTable">
+      <thead><tr><th>Người dùng</th><th>Vai trò</th><th>Trạng thái</th><th>Đăng nhập gần nhất</th><th></th></tr></thead>
+      <tbody>
+        <tr data-role="admin"><td><div class="cell-user"><span class="cell-avatar">AD</span><div><strong>Admin BMC</strong><span>admin@bmc.edu.vn</span></div></div></td><td><span class="role-badge role-admin">Admin</span></td><td><span class="status-pill"><i class="status-dot on"></i>Hoạt động</span></td><td>Hôm nay, 08:12</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Khoá" data-toast="Đã khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-lock"/></svg></button></div></td></tr>
+        <tr data-role="teacher"><td><div class="cell-user"><span class="cell-avatar">TL</span><div><strong>Trần Lan</strong><span>tran.lan@bmc.edu.vn</span></div></div></td><td><span class="role-badge role-teacher">Giáo viên</span></td><td><span class="status-pill"><i class="status-dot on"></i>Hoạt động</span></td><td>Hôm nay, 07:40</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Khoá" data-toast="Đã khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-lock"/></svg></button></div></td></tr>
+        <tr data-role="ta"><td><div class="cell-user"><span class="cell-avatar">PH</span><div><strong>Phạm Huy</strong><span>pham.huy@bmc.edu.vn</span></div></div></td><td><span class="role-badge role-ta">Trợ giảng</span></td><td><span class="status-pill"><i class="status-dot on"></i>Hoạt động</span></td><td>Hôm qua, 21:05</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Khoá" data-toast="Đã khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-lock"/></svg></button></div></td></tr>
+        <tr data-role="ta"><td><div class="cell-user"><span class="cell-avatar">MV</span><div><strong>Minh Vũ</strong><span>minh.vu@bmc.edu.vn</span></div></div></td><td><span class="role-badge role-custom">Trưởng nhóm trợ giảng</span></td><td><span class="status-pill"><i class="status-dot on"></i>Hoạt động</span></td><td>2 ngày trước</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Khoá" data-toast="Đã khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-lock"/></svg></button></div></td></tr>
+        <tr data-role="student"><td><div class="cell-user"><span class="cell-avatar">NA</span><div><strong>Ngọc Anh</strong><span>ngoc.anh12@gmail.com</span></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td><span class="status-pill"><i class="status-dot on"></i>Hoạt động</span></td><td>Hôm nay, 09:02</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Khoá" data-toast="Đã khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-lock"/></svg></button></div></td></tr>
+        <tr data-role="student"><td><div class="cell-user"><span class="cell-avatar">HS</span><div><strong>Học sinh 1</strong><span>hocsinh1@bmc.demo</span></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td><span class="status-pill"><i class="status-dot on"></i>Hoạt động</span></td><td>Hôm nay, 09:44</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Khoá" data-toast="Đã khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-lock"/></svg></button></div></td></tr>
+        <tr data-role="student"><td><div class="cell-user"><span class="cell-avatar">HT</span><div><strong>hocsinh_test09</strong><span>test09@example.com</span></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td><span class="status-pill"><i class="status-dot locked"></i>Đã khoá — 5 lần đăng nhập sai</span></td><td>Hôm qua, 22:18</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Mở khoá" data-toast="Đã mở khoá tài khoản (mô phỏng)"><svg class="icon"><use href="#i-key"/></svg></button></div></td></tr>
+        <tr data-role="student"><td><div class="cell-user"><span class="cell-avatar">QK</span><div><strong>Quang Khải</strong><span>quang.khai@gmail.com</span></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td><span class="status-pill"><i class="status-dot off"></i>Chưa kích hoạt</span></td><td>Chưa đăng nhập</td><td><div class="row-actions"><button aria-label="Sửa" data-toast="Mở form chỉnh sửa (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá người dùng (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+      </tbody>
+    </table></div>
+    <div class="pagination"><span id="userCount">8 người dùng minh hoạ</span><div class="pg-btns"><button class="active">1</button><button>2</button><button>3</button></div></div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addUserModal"><section class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><h2>Thêm người dùng</h2><p>Tạo tài khoản và gán vai trò ngay khi tạo.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addUserForm">
+    <div class="form-row"><div class="form-field"><label>Họ tên<em>*</em></label><input required placeholder="Nguyễn Văn A"></div><div class="form-field"><label>Email<em>*</em></label><input type="email" required placeholder="ten@bmc.edu.vn"></div></div>
+    <div class="form-field"><label>Vai trò<em>*</em></label><select required>
+      <option value="">Chọn vai trò</option><option>Admin</option><option>Giáo viên</option><option>Trợ giảng</option><option>Học sinh</option><option>Trưởng nhóm trợ giảng (tuỳ chỉnh)</option>
+    </select></div>
+    <p class="form-hint">Mật khẩu tạm thời và email kích hoạt sẽ được gửi tự động ở bản production (PORTAL-13).</p>
+    <button class="btn btn-primary" type="submit" style="width:100%">Tạo người dùng</button>
+  </form>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const modal = $('#addUserModal');
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  modal?.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('open'); lock(false); } });
+  $('#addUserForm')?.addEventListener('submit', e => { e.preventDefault(); modal.classList.remove('open'); lock(false); window.bmcAdminToast('Đã tạo người dùng mới (mô phỏng)'); });
+
+  function applyFilters() {
+    const q = ($('#userSearch').value || '').trim().toLocaleLowerCase('vi');
+    const role = $('.chip.active')?.dataset.roleFilter || 'all';
+    let count = 0;
+    $$('#userTable tbody tr').forEach(row => {
+      const matchRole = role === 'all' || row.dataset.role === role;
+      const matchText = row.textContent.toLocaleLowerCase('vi').includes(q);
+      const show = matchRole && matchText;
+      row.hidden = !show; if (show) count++;
+    });
+    $('#userCount').textContent = `${count} người dùng minh hoạ`;
+  }
+  $('#userSearch').addEventListener('input', applyFilters);
+  $$('[data-role-filter]').forEach(chip => chip.addEventListener('click', () => { $$('[data-role-filter]').forEach(c => c.classList.remove('active')); chip.classList.add('active'); applyFilters(); }));
+});
+</script>
+</body></html>

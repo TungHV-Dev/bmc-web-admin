@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Lịch sử đăng nhập</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="login-history">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Lịch sử đăng nhập</span><h1>Lịch sử đăng nhập</h1><p>Theo dõi các lượt đăng nhập thành công/thất bại, phát hiện truy cập bất thường theo SEC-10.</p></div>
+    <div class="admin-page-actions"><a class="btn btn-outline" href="security.html"><svg class="icon"><use href="#i-lock"/></svg>Cấu hình bảo mật</a></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-history"/></svg></span></div><strong>2.046</strong><span>Lượt đăng nhập hôm nay</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--red-soft);color:var(--red)"><svg class="icon"><use href="#i-close"/></svg></span></div><strong>37</strong><span>Đăng nhập thất bại</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--gold-soft);color:#8a5c0d"><svg class="icon"><use href="#i-lock"/></svg></span></div><strong>2</strong><span>Tài khoản tự động khoá</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:#f3ecfb;color:#623b8a"><svg class="icon"><use href="#i-shield"/></svg></span></div><strong>4</strong><span>Đăng nhập từ IP lạ</span></article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head table-toolbar">
+      <div class="chip-filters">
+        <button class="chip active" data-result-filter="all">Tất cả</button>
+        <button class="chip" data-result-filter="success">Thành công</button>
+        <button class="chip" data-result-filter="fail">Thất bại</button>
+        <button class="chip" data-result-filter="locked">Đã khoá tài khoản</button>
+      </div>
+      <div class="inline-search" style="width:min(100%,280px)"><input id="loginHistorySearch" placeholder="Tìm theo tài khoản hoặc IP"><svg class="icon"><use href="#i-search"/></svg></div>
+    </div>
+    <div class="table-wrap"><table class="data-table" id="loginHistoryTable">
+      <thead><tr><th>Người dùng</th><th>Vai trò</th><th>Thời gian</th><th>Địa chỉ IP</th><th>Thiết bị / Trình duyệt</th><th>Kết quả</th></tr></thead>
+      <tbody>
+        <tr data-result="success"><td><div class="cell-user"><span class="cell-avatar">AD</span><div><strong>Admin BMC</strong></div></div></td><td><span class="role-badge role-admin">Admin</span></td><td>Hôm nay, 08:12</td><td>118.70.12.44</td><td>Chrome trên macOS</td><td><span class="status-pill"><i class="status-dot on"></i>Thành công</span></td></tr>
+        <tr data-result="success"><td><div class="cell-user"><span class="cell-avatar">TL</span><div><strong>Trần Lan</strong></div></div></td><td><span class="role-badge role-teacher">Giáo viên</span></td><td>Hôm nay, 07:40</td><td>27.72.101.9</td><td>Safari trên iPhone</td><td><span class="status-pill"><i class="status-dot on"></i>Thành công</span></td></tr>
+        <tr data-result="success"><td><div class="cell-user"><span class="cell-avatar">NA</span><div><strong>Ngọc Anh</strong></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td>Hôm nay, 09:02</td><td>42.113.8.201</td><td>Chrome trên Android</td><td><span class="status-pill"><i class="status-dot on"></i>Thành công</span></td></tr>
+        <tr data-result="fail"><td><div class="cell-user"><span class="cell-avatar">HT</span><div><strong>hocsinh_test09</strong></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td>Hôm qua, 22:10</td><td>203.162.4.77</td><td>Chrome trên Windows</td><td><span class="status-pill"><i class="status-dot locked"></i>Sai mật khẩu (lần 4)</span></td></tr>
+        <tr data-result="locked"><td><div class="cell-user"><span class="cell-avatar">HT</span><div><strong>hocsinh_test09</strong></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td>Hôm qua, 22:18</td><td>203.162.4.77</td><td>Chrome trên Windows</td><td><span class="status-pill"><i class="status-dot locked"></i>Đã khoá — sai 5 lần</span></td></tr>
+        <tr data-result="fail"><td><div class="cell-user"><span class="cell-avatar">QK</span><div><strong>Quang Khải</strong></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td>Hôm qua, 20:33</td><td>171.244.9.15</td><td>Firefox trên Windows</td><td><span class="status-pill"><i class="status-dot locked"></i>Sai mật khẩu (lần 1)</span></td></tr>
+        <tr data-result="success"><td><div class="cell-user"><span class="cell-avatar">MV</span><div><strong>Minh Vũ</strong></div></div></td><td><span class="role-badge role-ta">Trợ giảng</span></td><td>2 ngày trước, 21:05</td><td>14.161.33.201</td><td>Chrome trên macOS</td><td><span class="status-pill"><i class="status-dot on"></i>Thành công</span></td></tr>
+        <tr data-result="fail"><td><div class="cell-user"><span class="cell-avatar">AD</span><div><strong>Admin BMC</strong></div></div></td><td><span class="role-badge role-admin">Admin</span></td><td>3 ngày trước, 23:47</td><td>185.220.101.4 <span class="tag-chip" style="margin-left:6px">IP lạ</span></td><td>Chrome trên Linux</td><td><span class="status-pill"><i class="status-dot locked"></i>Sai mã OTP</span></td></tr>
+        <tr data-result="success"><td><div class="cell-user"><span class="cell-avatar">HS</span><div><strong>Học sinh 1</strong></div></div></td><td><span class="role-badge role-student">Học sinh</span></td><td>3 ngày trước, 09:44</td><td>42.113.8.201</td><td>Chrome trên Android</td><td><span class="status-pill"><i class="status-dot on"></i>Thành công</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="pagination"><span id="loginHistoryCount">9 lượt đăng nhập minh hoạ</span><div class="pg-btns"><button class="active">1</button><button>2</button><button>3</button></div></div>
+  </section>
+  <p class="form-hint" style="margin-top:14px">SEC-10: bản production cần lưu đầy đủ log đăng nhập (kèm audit trail) và cảnh báo khi phát hiện đăng nhập từ vị trí/thiết bị bất thường.</p>
+</template>
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  function applyFilters() {
+    const q = ($('#loginHistorySearch').value || '').trim().toLocaleLowerCase('vi');
+    const result = $('.chip.active')?.dataset.resultFilter || 'all';
+    let count = 0;
+    $$('#loginHistoryTable tbody tr').forEach(row => {
+      const matchResult = result === 'all' || row.dataset.result === result;
+      const matchText = row.textContent.toLocaleLowerCase('vi').includes(q);
+      const show = matchResult && matchText;
+      row.hidden = !show; if (show) count++;
+    });
+    $('#loginHistoryCount').textContent = `${count} lượt đăng nhập minh hoạ`;
+  }
+  $('#loginHistorySearch').addEventListener('input', applyFilters);
+  $$('[data-result-filter]').forEach(chip => chip.addEventListener('click', () => { $$('[data-result-filter]').forEach(c => c.classList.remove('active')); chip.classList.add('active'); applyFilters(); }));
+});
+</script>
+</body></html>

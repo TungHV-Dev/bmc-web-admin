@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Lớp học</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="classes">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Lớp học</span><h1>Quản lý lớp học</h1><p>Tạo lớp học gắn với khoá học, phân công giáo viên phụ trách, theo dõi sĩ số và lịch học.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-primary" type="button" data-open-modal="addClassModal"><svg class="icon"><use href="#i-plus"/></svg>Tạo lớp học</button></div>
+  </div>
+
+  <div class="stat-grid">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-calendar"/></svg></span></div><strong>14</strong><span>Lớp học đang mở</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--blue-soft);color:#1c4894"><svg class="icon"><use href="#i-users"/></svg></span></div><strong>386</strong><span>Học sinh đang theo học</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--gold-soft);color:#8a5c0d"><svg class="icon"><use href="#i-clock"/></svg></span></div><strong>3</strong><span>Lớp sắp khai giảng</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:#eaf7ec;color:#2f7a44"><svg class="icon"><use href="#i-check"/></svg></span></div><strong>21</strong><span>Lớp đã kết thúc</span></article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head table-toolbar">
+      <div class="chip-filters">
+        <button class="chip active" data-status-filter="all">Tất cả</button>
+        <button class="chip" data-status-filter="open">Đang mở</button>
+        <button class="chip" data-status-filter="full">Đã đầy</button>
+        <button class="chip" data-status-filter="ended">Đã kết thúc</button>
+      </div>
+      <div class="inline-search" style="width:min(100%,280px)"><input id="classSearch" placeholder="Tìm theo tên lớp hoặc khoá học"><svg class="icon"><use href="#i-search"/></svg></div>
+    </div>
+    <div class="table-wrap"><table class="data-table" id="classTable">
+      <thead><tr><th>Lớp học</th><th>Khoá học liên kết</th><th>Giáo viên phụ trách</th><th>Sĩ số</th><th>Lịch học</th><th>Trạng thái</th><th></th></tr></thead>
+      <tbody>
+        <tr data-status="open"><td><strong>GT01 — Giải tích 1 sáng T2·4·6</strong></td><td>Giải tích 1 — Nắm chắc nền tảng</td><td><div class="cell-user"><span class="cell-avatar">TL</span><div><strong>Trần Lan</strong></div></div></td><td>24/30</td><td>T2, T4, T6 · 8:00–9:30</td><td><span class="status-pill"><i class="status-dot on"></i>Đang mở</span></td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="addClassModal" data-toast="Đã mở form chỉnh sửa lớp (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá lớp học (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        <tr data-status="full"><td><strong>ON12 — Tổng ôn 12 tối T3·5·7</strong></td><td>Tổng ôn THPT theo chuyên đề</td><td><div class="cell-user"><span class="cell-avatar">TL</span><div><strong>Trần Lan</strong></div></div></td><td>30/30</td><td>T3, T5, T7 · 19:00–20:30</td><td><span class="status-pill"><i class="status-dot off"></i>Đã đầy</span></td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="addClassModal" data-toast="Đã mở form chỉnh sửa lớp (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá lớp học (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        <tr data-status="open"><td><strong>HH11 — Hình học không gian CN sáng</strong></td><td>Hình học không gian bằng tư duy</td><td><div class="cell-user"><span class="cell-avatar">PH</span><div><strong>Phạm Huy</strong></div></div></td><td>18/25</td><td>Chủ nhật · 8:30–10:30</td><td><span class="status-pill"><i class="status-dot on"></i>Đang mở</span></td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="addClassModal" data-toast="Đã mở form chỉnh sửa lớp (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá lớp học (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        <tr data-status="open"><td><strong>DS-DH — Đại số tuyến tính K68</strong></td><td>Đại số tuyến tính căn bản</td><td><div class="cell-user"><span class="cell-avatar">MV</span><div><strong>Minh Vũ</strong></div></div></td><td>9/20</td><td>Khai giảng 05/08/2026 · T2, T5</td><td><span class="status-pill"><i class="status-dot on"></i>Sắp khai giảng</span></td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="addClassModal" data-toast="Đã mở form chỉnh sửa lớp (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá lớp học (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+        <tr data-status="ended"><td><strong>GT01 — Giải tích 1 khoá Xuân 2026</strong></td><td>Giải tích 1 — Nắm chắc nền tảng</td><td><div class="cell-user"><span class="cell-avatar">TL</span><div><strong>Trần Lan</strong></div></div></td><td>28/30</td><td>Đã kết thúc 20/06/2026</td><td><span class="status-pill"><i class="status-dot locked"></i>Đã kết thúc</span></td><td><div class="row-actions"><button aria-label="Sửa" data-open-modal="addClassModal" data-toast="Đã mở form chỉnh sửa lớp (mô phỏng)"><svg class="icon"><use href="#i-edit"/></svg></button><button aria-label="Xoá" data-toast="Đã xoá lớp học (mô phỏng)"><svg class="icon"><use href="#i-trash"/></svg></button></div></td></tr>
+      </tbody>
+    </table></div>
+    <div class="pagination"><span id="classCount">5 lớp học minh hoạ</span><div class="pg-btns"><button class="active">1</button><button>2</button></div></div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addClassModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,580px)"><div class="modal-head"><div><h2>Tạo / chỉnh sửa lớp học</h2><p>Gắn lớp với một khoá học, phân công giáo viên và thiết lập lịch học.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addClassForm">
+    <div class="form-row"><div class="form-field full"><label>Tên lớp<em>*</em></label><input required placeholder="VD: GT02 — Giải tích 1 lớp tối T3·5·7"></div></div>
+    <div class="form-row">
+      <div class="form-field"><label>Khoá học liên kết<em>*</em></label><select required>
+        <option value="">Chọn khoá học</option><option>Giải tích 1 — Nắm chắc nền tảng</option><option>Tổng ôn THPT theo chuyên đề</option><option>Hình học không gian bằng tư duy</option><option>Đại số tuyến tính căn bản</option>
+      </select></div>
+      <div class="form-field"><label>Giáo viên phụ trách<em>*</em></label><select required><option value="">Chọn giáo viên</option><option>Trần Lan</option><option>Phạm Huy</option><option>Minh Vũ</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><label>Sĩ số tối đa</label><input type="number" placeholder="VD: 30"></div>
+      <div class="form-field"><label>Trạng thái</label><select><option>Đang mở</option><option>Sắp khai giảng</option><option>Đã đầy</option><option>Đã kết thúc</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><label>Ngày học trong tuần</label><input placeholder="VD: Thứ 2, Thứ 4, Thứ 6"></div>
+      <div class="form-field"><label>Khung giờ</label><input placeholder="VD: 19:00–20:30"></div>
+    </div>
+    <div class="form-field"><label>Ghi chú</label><textarea placeholder="Phòng học, hình thức online/offline, yêu cầu đầu vào..."></textarea></div>
+    <button class="btn btn-primary" type="submit" style="width:100%">Lưu lớp học</button>
+  </form>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  $('#addClassForm')?.addEventListener('submit', e => { e.preventDefault(); document.getElementById('addClassModal').classList.remove('open'); lock(false); window.bmcAdminToast('Đã lưu lớp học (mô phỏng)'); });
+
+  function applyFilters() {
+    const q = ($('#classSearch').value || '').trim().toLocaleLowerCase('vi');
+    const status = $('.chip.active')?.dataset.statusFilter || 'all';
+    let count = 0;
+    $$('#classTable tbody tr').forEach(row => {
+      const matchStatus = status === 'all' || row.dataset.status === status;
+      const matchText = row.textContent.toLocaleLowerCase('vi').includes(q);
+      const show = matchStatus && matchText;
+      row.hidden = !show; if (show) count++;
+    });
+    $('#classCount').textContent = `${count} lớp học minh hoạ`;
+  }
+  $('#classSearch').addEventListener('input', applyFilters);
+  $$('[data-status-filter]').forEach(chip => chip.addEventListener('click', () => { $$('[data-status-filter]').forEach(c => c.classList.remove('active')); chip.classList.add('active'); applyFilters(); }));
+});
+</script>
+</body></html>
