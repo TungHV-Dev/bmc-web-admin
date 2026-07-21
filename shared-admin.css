@@ -167,20 +167,38 @@ body.locked{overflow:hidden}
 
 /* Login page */
 .admin-login-shell{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
-.admin-login-visual{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy),#4a1729);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:60px}
-.admin-login-visual h2{max-width:420px;font-size:clamp(26px,3vw,36px);line-height:1.25;letter-spacing:-.03em}
-.admin-login-visual p{max-width:400px;color:rgba(255,255,255,.72);margin-top:13px;font-size:14px;line-height:1.6}
-.admin-login-feat{display:grid;gap:13px;margin-top:28px}
-.admin-login-feat span{display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.9)}
-.admin-login-feat .icon{width:16px;height:16px;color:#91e7d8;flex:0 0 auto}
-.admin-login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px}
-.admin-login-card{width:min(100%,380px)}
-.admin-login-card h1{margin:18px 0 5px;font-size:23px;color:var(--ink)}
-.admin-login-card p{margin:0 0 22px;color:var(--muted);font-size:13px}
+.admin-login-visual{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy),#4a1729);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:clamp(52px,6vw,88px)}
+.admin-login-visual::after{content:"";position:absolute;right:-150px;bottom:-180px;width:460px;height:460px;border:1px solid rgba(255,255,255,.12);border-radius:50%;box-shadow:0 0 0 70px rgba(255,255,255,.025),0 0 0 140px rgba(255,255,255,.018);pointer-events:none}
+.admin-login-visual>*{position:relative;z-index:1}
+.admin-login-visual .demo-pill{padding:7px 11px;font-size:12px}
+.admin-login-visual h2{max-width:580px;margin-bottom:0;font-size:clamp(34px,3.4vw,48px);line-height:1.18;letter-spacing:-.035em}
+.admin-login-visual p{max-width:540px;color:rgba(255,255,255,.76);margin-top:18px;font-size:17px;line-height:1.72}
+.admin-login-feat{display:grid;gap:16px;margin-top:34px}
+.admin-login-feat span{display:flex;align-items:flex-start;gap:11px;max-width:560px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.92)}
+.admin-login-feat .icon{width:19px;height:19px;margin-top:2px;color:#91e7d8;flex:0 0 auto}
+.admin-login-form-wrap{display:flex;align-items:center;justify-content:center;padding:48px;background:linear-gradient(145deg,#fff 20%,#fff9fa)}
+.admin-login-card{width:min(100%,460px)}
+.admin-login-brand{display:flex;align-items:center;gap:14px;width:fit-content}
+.admin-login-brand .brand-mark{width:64px;height:64px;flex:0 0 auto;border-color:#eadadd;border-radius:17px;box-shadow:0 10px 24px rgba(117,22,42,.1)}
+.admin-login-brand .brand-mark img{width:148px;top:27%}
+.admin-login-brand-copy strong,.admin-login-brand-copy small{display:block}
+.admin-login-brand-copy strong{color:var(--red);font-size:20px;line-height:1.15;letter-spacing:-.02em}
+.admin-login-brand-copy small{margin-top:5px;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.admin-login-card h1{margin:28px 0 8px;font-size:32px;line-height:1.22;letter-spacing:-.025em;color:var(--ink)}
+.admin-login-card>p{margin:0 0 28px;color:var(--muted);font-size:16px;line-height:1.6}
 .login-step{display:none}
-.login-step.active{display:grid;gap:14px}
-.otp-inputs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.otp-inputs input{text-align:center;font-size:17px;padding:12px 0}
+.login-step.active{display:grid;gap:17px}
+.admin-login-card .form-field{gap:8px}
+.admin-login-card .form-field label{font-size:14px}
+.admin-login-card .form-field input{min-height:50px;padding:12px 14px;border-radius:11px;background:#fff;font-size:16px}
+.admin-login-card .form-field input:focus{border-color:#d88796;box-shadow:0 0 0 4px rgba(200,29,58,.08);outline:0}
+.admin-login-card .demo-credentials{padding:13px 14px;border-radius:11px;font-size:14px;line-height:1.55}
+.admin-login-card .btn{min-height:50px;font-size:15px}
+.admin-login-card .auth-error{min-height:20px;font-size:13px;line-height:1.45}
+.admin-login-card .security-note{gap:10px;margin-top:20px;padding:13px 14px;border-radius:11px;font-size:12px;line-height:1.55}
+.admin-login-card .security-note .icon{width:18px;height:18px;margin-top:1px}
+.otp-inputs{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+.admin-login-card .otp-inputs input{text-align:center;font-size:21px;font-weight:800;padding:12px 0}
 
 /* Certificates & badges */
 .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -196,6 +214,6 @@ body.locked{overflow:hidden}
 .tag-chip.badge-tag{background:var(--gold-soft);color:#8a5c0d}
 .tag-chip.empty{background:var(--surface);color:var(--muted);font-weight:600}
 
-@media(max-width:1100px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}.bank-grid{grid-template-columns:1fr}.bank-filter{position:static}.admin-login-shell{grid-template-columns:1fr}.admin-login-visual{display:none}}
+@media(max-width:1100px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}.bank-grid{grid-template-columns:1fr}.bank-filter{position:static}.admin-login-shell{grid-template-columns:1fr}.admin-login-visual{display:none}.admin-login-form-wrap{min-height:100vh}}
 @media(max-width:900px){.admin-sidebar{position:fixed;left:0;top:0;transform:translateX(-100%);box-shadow:var(--shadow-lg)}.admin-sidebar.open{transform:none}.sidebar-toggle{display:grid}.admin-content{padding:18px 16px 70px}.form-row{grid-template-columns:1fr}}
-@media(max-width:640px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:1fr}.admin-page-head{flex-direction:column;align-items:flex-start}.admin-page-actions{width:100%;flex-wrap:wrap}.totp-card{grid-template-columns:1fr;justify-items:center;text-align:center}.otp-inputs{gap:5px}}
+@media(max-width:640px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:1fr}.admin-page-head{flex-direction:column;align-items:flex-start}.admin-page-actions{width:100%;flex-wrap:wrap}.totp-card{grid-template-columns:1fr;justify-items:center;text-align:center}.admin-login-form-wrap{align-items:flex-start;padding:32px 20px}.admin-login-brand .brand-mark{width:56px;height:56px;border-radius:15px}.admin-login-brand .brand-mark img{width:130px}.admin-login-brand-copy strong{font-size:18px}.admin-login-brand-copy small{font-size:10px}.admin-login-card h1{margin-top:24px;font-size:28px}.admin-login-card>p{margin-bottom:24px;font-size:15px}.admin-login-card .demo-credentials{font-size:13px}.otp-inputs{gap:5px}.admin-login-card .otp-inputs input{font-size:18px;padding-inline:0}}
