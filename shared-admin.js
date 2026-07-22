@@ -52,6 +52,12 @@
       <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
       <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8.5 12.5-2 8 5.5-3 5.5 3-2-8"/></symbol>
       <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5M12 8v4l3 2"/></symbol>
+      <symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.3"/><circle cx="15" cy="6" r="1.3"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><circle cx="9" cy="18" r="1.3"/><circle cx="15" cy="18" r="1.3"/></symbol>
+      <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"/><path d="M6 11.7V16c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4.3M20 9.5v6"/></symbol>
+      <symbol id="i-scroll" viewBox="0 0 24 24"><path d="M6 3h13v13a2.5 2.5 0 0 1-2.5 2.5H6"/><path d="M6 3a2.5 2.5 0 0 0-2.5 2.5V16A2.5 2.5 0 0 0 6 18.5"/><path d="M9 7.5h7M9 11h7"/></symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2.5s5 4.4 5 9.2a5 5 0 1 1-10 0c0-1.4.6-2.4 1.3-3.4.3.9 1 1.5 1.7 1.5.9 0 1-1 .8-2 -.3-1.6-.3-3.4 1.2-5.3Z"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
     </defs></svg>`;
   document.body.insertAdjacentHTML('afterbegin', iconDefs);
 
@@ -87,7 +93,7 @@
   const shell = `
     <div class="admin-shell">
       <aside class="admin-sidebar" id="adminSidebar">
-        <a class="admin-sidebar-brand" href="index.html"><span class="brand-mark"><img src="assets/logo.jpeg" alt=""></span><span><strong>BMC Admin</strong><span>Bảng điều khiển demo</span></span></a>
+        <a class="admin-sidebar-brand" href="index.html"><span class="brand-mark"><img src="assets/logo-mark.png" alt=""></span><span><strong>BMC Admin</strong><span>Bảng điều khiển demo</span></span></a>
         <nav class="admin-nav" aria-label="Điều hướng quản trị">${navHtml}</nav>
         <div class="admin-sidebar-foot">Web Admin — dữ liệu và quyền hạn trong bản demo này chỉ mang tính minh hoạ.</div>
       </aside>

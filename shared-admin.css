@@ -180,7 +180,6 @@ body.locked{overflow:hidden}
 .admin-login-card{width:min(100%,460px)}
 .admin-login-brand{display:flex;align-items:center;gap:14px;width:fit-content}
 .admin-login-brand .brand-mark{width:64px;height:64px;flex:0 0 auto;border-color:#eadadd;border-radius:17px;box-shadow:0 10px 24px rgba(117,22,42,.1)}
-.admin-login-brand .brand-mark img{width:148px;top:27%}
 .admin-login-brand-copy strong,.admin-login-brand-copy small{display:block}
 .admin-login-brand-copy strong{color:var(--red);font-size:20px;line-height:1.15;letter-spacing:-.02em}
 .admin-login-brand-copy small{margin-top:5px;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
@@ -214,6 +213,43 @@ body.locked{overflow:hidden}
 .tag-chip.badge-tag{background:var(--gold-soft);color:#8a5c0d}
 .tag-chip.empty{background:var(--surface);color:var(--muted);font-weight:600}
 
+/* Visual polish pass — depth, motion and consistent iconography across all admin pages */
+.admin-sidebar-brand{transition:background .18s}
+.admin-sidebar-brand:hover{background:rgba(255,255,255,.05)}
+.admin-nav a{transition:background .16s,color .16s,transform .16s}
+.admin-nav a:hover{transform:translateX(2px)}
+.admin-nav a.active{background:linear-gradient(135deg,var(--red),#9c1730)}
+.stat-tile,.role-card,.cert-card,.panel,.qb-row,.exam-row,.tree-node,.section-toggle,.doc-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.stat-tile:hover,.role-card:hover,.cert-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(24,24,42,.09);border-color:#e5dfe0}
+.stat-icon{transition:transform .18s ease}
+.stat-tile:hover .stat-icon{transform:scale(1.08)}
+.qb-row:hover,.exam-row:hover{border-color:#e5dfe0;box-shadow:0 10px 24px rgba(24,24,42,.06)}
+.data-table tr td{transition:background .15s}
+.chip{transition:background .15s,color .15s,border-color .15s}
+.chip:not(.active):hover{border-color:#c9c5c2;color:var(--ink)}
+.btn{transition:transform .18s,box-shadow .18s,background .18s}
+.tab{transition:background .15s,color .15s}
+.row-actions button,.row-actions a{transition:color .15s,border-color .15s,background .15s}
+.admin-topbar{transition:box-shadow .2s}
+.icon-btn{transition:border-color .15s,background .15s}
+.icon-btn:hover{background:var(--surface)}
+
+/* Avatar colour reflects the row's role, without needing per-row markup changes */
+.cell-avatar{background:var(--navy);transition:none}
+tr:has(.role-admin) .cell-avatar{background:var(--red)}
+tr:has(.role-teacher) .cell-avatar{background:var(--blue)}
+tr:has(.role-ta) .cell-avatar{background:#c98a12}
+tr:has(.role-student) .cell-avatar{background:#0e9f8a}
+tr:has(.role-custom) .cell-avatar{background:#7a4bb0}
+
+/* Certificate / badge icon tiles now use the shared line-icon language instead of emoji */
+.cert-icon{color:#8a5c0d}
+.cert-icon .icon{width:24px;height:24px;stroke-width:1.7}
+.cert-icon.badge{color:#0e6e60}
+.cert-icon.badge .icon{width:22px;height:22px}
+
+.drag-handle{cursor:grab}
+
 @media(max-width:1100px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}.bank-grid{grid-template-columns:1fr}.bank-filter{position:static}.admin-login-shell{grid-template-columns:1fr}.admin-login-visual{display:none}.admin-login-form-wrap{min-height:100vh}}
 @media(max-width:900px){.admin-sidebar{position:fixed;left:0;top:0;transform:translateX(-100%);box-shadow:var(--shadow-lg)}.admin-sidebar.open{transform:none}.sidebar-toggle{display:grid}.admin-content{padding:18px 16px 70px}.form-row{grid-template-columns:1fr}}
-@media(max-width:640px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:1fr}.admin-page-head{flex-direction:column;align-items:flex-start}.admin-page-actions{width:100%;flex-wrap:wrap}.totp-card{grid-template-columns:1fr;justify-items:center;text-align:center}.admin-login-form-wrap{align-items:flex-start;padding:32px 20px}.admin-login-brand .brand-mark{width:56px;height:56px;border-radius:15px}.admin-login-brand .brand-mark img{width:130px}.admin-login-brand-copy strong{font-size:18px}.admin-login-brand-copy small{font-size:10px}.admin-login-card h1{margin-top:24px;font-size:28px}.admin-login-card>p{margin-bottom:24px;font-size:15px}.admin-login-card .demo-credentials{font-size:13px}.otp-inputs{gap:5px}.admin-login-card .otp-inputs input{font-size:18px;padding-inline:0}}
+@media(max-width:640px){.stat-grid,.role-card-grid,.cert-grid{grid-template-columns:1fr}.admin-page-head{flex-direction:column;align-items:flex-start}.admin-page-actions{width:100%;flex-wrap:wrap}.totp-card{grid-template-columns:1fr;justify-items:center;text-align:center}.admin-login-form-wrap{align-items:flex-start;padding:32px 20px}.admin-login-brand .brand-mark{width:56px;height:56px;border-radius:15px}.admin-login-brand-copy strong{font-size:18px}.admin-login-brand-copy small{font-size:10px}.admin-login-card h1{margin-top:24px;font-size:28px}.admin-login-card>p{margin-bottom:24px;font-size:15px}.admin-login-card .demo-credentials{font-size:13px}.otp-inputs{gap:5px}.admin-login-card .otp-inputs input{font-size:18px;padding-inline:0}}
