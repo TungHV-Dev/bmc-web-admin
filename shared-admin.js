@@ -73,6 +73,7 @@
     { label: 'Học liệu', links: [
       ['question-bank', 'question-bank.html', 'i-exam', 'Kho đề thi/câu hỏi'],
       ['courses', 'courses.html', 'i-book', 'Khoá học'],
+      ['ebooks', 'ebooks.html', 'i-scroll', 'Sách điện tử (Ebook)'],
       ['classes', 'classes.html', 'i-calendar', 'Lớp học']
     ] },
     { label: 'Chứng nhận', links: [
@@ -85,7 +86,7 @@
       ['security', 'security.html', 'i-lock', 'Bảo mật & TOTP']
     ] }
   ];
-  const activeGroup = page === 'course-builder' ? 'courses' : page;
+  const activeGroup = page === 'course-builder' ? 'courses' : page === 'ebook-builder' ? 'ebooks' : page;
   const navHtml = navGroups.map(g => `<div class="admin-nav-group"><span>${g.label}</span><div class="links">${
     g.links.map(([id, href, icon, label]) => `<a class="${activeGroup === id ? 'active' : ''}" href="${href}"><svg class="icon"><use href="#${icon}"/></svg>${label}</a>`).join('')
   }</div></div>`).join('');

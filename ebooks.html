@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Sách điện tử (Ebook)</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="ebooks">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><svg class="icon"><use href="#i-home"/></svg>Admin<svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Sách điện tử</span><h1>Sách điện tử (Ebook)</h1><p>Tạo sách, cấu hình bìa &amp; mẫu trang, mục lục và nội dung hiển thị dưới dạng ebook trên Web Portal.</p></div>
+    <div class="admin-page-actions"><button class="btn btn-primary" type="button" data-open-modal="addBookModal"><svg class="icon"><use href="#i-plus"/></svg>Tạo sách mới</button></div>
+  </div>
+
+  <div class="stat-grid ebooks-summary">
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon"><svg class="icon"><use href="#i-scroll"/></svg></span></div><strong>9</strong><span>Sách điện tử</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--blue-soft);color:var(--blue)"><svg class="icon"><use href="#i-book"/></svg></span></div><strong>5</strong><span>Đã xuất bản trên Portal</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:var(--gold-soft);color:#9a6510"><svg class="icon"><use href="#i-clock"/></svg></span></div><strong>4</strong><span>Đang soạn thảo</span></article>
+    <article class="stat-tile"><div class="stat-tile-top"><span class="stat-icon" style="background:#eaf7ec;color:#3a8949"><svg class="icon"><use href="#i-layout"/></svg></span></div><strong>3</strong><span>Mẫu trang (template) đã tạo</span></article>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head table-toolbar">
+      <div class="chip-filters"><button class="chip active">Tất cả</button><button class="chip">Đã xuất bản</button><button class="chip">Soạn thảo</button></div>
+      <div class="inline-search" style="width:min(100%,260px)"><input placeholder="Tìm tên sách"><svg class="icon"><use href="#i-search"/></svg></div>
+    </div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Sách</th><th>Môn / Khối</th><th>Trạng thái</th><th>Chương</th><th></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="ebook-cell"><span class="ebook-thumb ebook-thumb-red">∫<b>MIN-MAX</b></span><div><strong>Tổng ôn Hình học TSA — Bài 1</strong><span>Nhập từ Sample_book.docx</span></div></div></td>
+          <td>Toán · Lớp 12</td>
+          <td><span class="status-pill"><i class="status-dot on"></i>Đã xuất bản</span></td><td>1 chương / 3 mục</td>
+          <td><div class="row-actions"><button type="button" aria-label="Chỉnh sửa ebook" data-tooltip="Chỉnh sửa ebook" data-ebook-action="edit"><svg class="icon"><use href="#i-edit"/></svg></button><button type="button" class="row-action-delete" aria-label="Xoá ebook" data-tooltip="Xoá ebook" data-ebook-action="delete" data-ebook-title="Tổng ôn Hình học TSA — Bài 1"><svg class="icon"><use href="#i-trash"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td><div class="ebook-cell"><span class="ebook-thumb ebook-thumb-navy">π<b>GIẢI TÍCH</b></span><div><strong>Giải tích nền tảng cho sinh viên</strong><span>Soạn thủ công qua editor</span></div></div></td>
+          <td>Toán · Đại học</td>
+          <td><span class="status-pill"><i class="status-dot on"></i>Đã xuất bản</span></td><td>6 chương / 24 mục</td>
+          <td><div class="row-actions"><button type="button" aria-label="Chỉnh sửa ebook" data-tooltip="Chỉnh sửa ebook" data-ebook-action="edit"><svg class="icon"><use href="#i-edit"/></svg></button><button type="button" class="row-action-delete" aria-label="Xoá ebook" data-tooltip="Xoá ebook" data-ebook-action="delete" data-ebook-title="Giải tích nền tảng cho sinh viên"><svg class="icon"><use href="#i-trash"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td><div class="ebook-cell"><span class="ebook-thumb ebook-thumb-teal">△<b>HÌNH HỌC</b></span><div><strong>Hình học không gian bằng tư duy</strong><span>Nhập từ file Word</span></div></div></td>
+          <td>Toán · Lớp 11–12</td>
+          <td><span class="status-pill"><i class="status-dot off"></i>Soạn thảo</span></td><td>3 chương / 11 mục</td>
+          <td><div class="row-actions"><button type="button" aria-label="Chỉnh sửa ebook" data-tooltip="Chỉnh sửa ebook" data-ebook-action="edit"><svg class="icon"><use href="#i-edit"/></svg></button><button type="button" class="row-action-delete" aria-label="Xoá ebook" data-tooltip="Xoá ebook" data-ebook-action="delete" data-ebook-title="Hình học không gian bằng tư duy"><svg class="icon"><use href="#i-trash"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td><div class="ebook-cell"><span class="ebook-thumb ebook-thumb-gold">x<b>ĐẠI SỐ</b></span><div><strong>Đại số 10 từ cơ bản đến vận dụng cao</strong><span>Soạn thủ công qua editor</span></div></div></td>
+          <td>Toán · Lớp 10</td>
+          <td><span class="status-pill"><i class="status-dot off"></i>Soạn thảo</span></td><td>0 chương / 0 mục</td>
+          <td><div class="row-actions"><button type="button" aria-label="Chỉnh sửa ebook" data-tooltip="Chỉnh sửa ebook" data-ebook-action="edit"><svg class="icon"><use href="#i-edit"/></svg></button><button type="button" class="row-action-delete" aria-label="Xoá ebook" data-tooltip="Xoá ebook" data-ebook-action="delete" data-ebook-title="Đại số 10 từ cơ bản đến vận dụng cao"><svg class="icon"><use href="#i-trash"/></svg></button></div></td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addBookModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,600px)"><div class="modal-head"><div><h2>Tạo sách mới</h2><p>Sau khi tạo, dùng màn "Xây dựng nội dung" để cấu hình bìa, mẫu trang, mục lục và nội dung.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <form class="modal-form" id="addBookForm">
+    <div class="form-field"><label>Tên sách<em>*</em></label><input required placeholder="VD: Tổng ôn Hình học TSA — Bài 1"></div>
+    <div class="form-row"><div class="form-field"><label>Môn học</label><select><option>Toán</option><option>Vật lý</option><option>Hoá học</option></select></div><div class="form-field"><label>Khối lớp</label><select><option>Lớp 10</option><option>Lớp 11</option><option selected>Lớp 12</option><option>Đại học</option></select></div></div>
+    <div class="form-field"><label>Mẫu trang (Header / Footer / Watermark)</label><select><option>Tạo mẫu trang mới</option><option>Dùng mẫu "BMC Education — mặc định"</option><option>Dùng mẫu "Tổng ôn TSA 2026"</option></select></div>
+    <p class="form-hint">Mẫu trang quyết định header, footer và watermark áp dụng cố định cho mọi trang trong sách — có thể chỉnh lại ở bước tiếp theo.</p>
+    <button class="btn btn-primary" type="submit" style="width:100%">Tạo sách &amp; mở trình xây dựng nội dung</button>
+  </form>
+</section></div>
+
+<div class="modal-backdrop" id="deleteBookModal"><section class="modal ebook-delete-modal" role="dialog" aria-modal="true" aria-labelledby="deleteBookModalTitle"><div class="modal-head"><div><h2 id="deleteBookModalTitle">Xoá ebook?</h2><p>Thao tác này chỉ xoá ebook khỏi danh sách trong phiên demo hiện tại.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="delete-book-message"><svg class="icon"><use href="#i-trash"/></svg><div><strong id="deleteBookName"></strong><span>Nội dung, cấu hình và dữ liệu liên quan sẽ không còn hiển thị trong danh sách.</span></div></div><div class="modal-actions"><button class="btn btn-outline" type="button" data-close-modal>Huỷ</button><button class="btn btn-primary" type="button" id="confirmDeleteBook">Xoá ebook</button></div></section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  function lock(open){ document.body.classList.toggle('locked', open); }
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  document.getElementById('addBookForm')?.addEventListener('submit', e => { e.preventDefault(); location.href = 'ebook-builder.html'; });
+  $$('.chip-filters .chip').forEach(c => c.addEventListener('click', () => { c.parentElement.querySelectorAll('.chip').forEach(x => x.classList.remove('active')); c.classList.add('active'); }));
+  let deletingRow = null;
+  $$('[data-ebook-action]').forEach(action => action.addEventListener('click', () => {
+    if (action.dataset.ebookAction === 'edit') { location.href = 'ebook-builder.html'; return; }
+    deletingRow = action.closest('tr');
+    document.getElementById('deleteBookName').textContent = action.dataset.ebookTitle || deletingRow.querySelector('.ebook-cell strong').textContent;
+    document.getElementById('deleteBookModal').classList.add('open'); lock(true);
+  }));
+  document.getElementById('confirmDeleteBook')?.addEventListener('click', () => {
+    if (!deletingRow) return;
+    const title = deletingRow.querySelector('.ebook-cell strong').textContent;
+    deletingRow.remove(); deletingRow = null;
+    document.getElementById('deleteBookModal').classList.remove('open'); lock(false); window.bmcAdminToast?.(`Đã xoá ebook “${title}” khỏi danh sách demo`);
+  });
+});
+</script>
+</body></html>

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMC Admin — Xây dựng sách điện tử</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared-admin.css">
+</head>
+<body data-page="ebook-builder">
+<div data-admin-shell></div>
+<template data-page-content>
+  <div class="admin-page-head">
+    <div><span class="admin-crumb"><a href="ebooks.html">Sách điện tử</a><svg class="icon" style="transform:rotate(-90deg)"><use href="#i-chevron"/></svg>Xây dựng nội dung</span><h1>Tổng ôn Hình học TSA — Bài 1</h1><p>Cấu hình bìa, mẫu trang cố định, mục lục và nội dung hiển thị dưới dạng ebook trên Web Portal.</p></div>
+    <div class="admin-page-actions ebook-builder-actions"><button class="btn btn-outline btn-compact" type="button" id="saveEbookDraft">Lưu nháp</button><a class="btn btn-outline btn-compact" href="../web-portal/ebook-reader.html" target="_blank"><svg class="icon"><use href="#i-book"/></svg>Xem thử ebook</a><button class="btn btn-primary btn-compact" type="button" id="publishEbook"><svg class="icon"><use href="#i-check"/></svg>Xuất bản</button></div>
+  </div>
+
+  <nav class="ebook-config-steps" aria-label="Các bước cấu hình ebook">
+    <button class="ebook-config-step active" type="button" data-step-tab="cover" aria-current="step"><span class="ebook-step-number">1</span><span class="ebook-step-copy"><strong>Bìa &amp; mẫu trang</strong><small>Thiết kế hiển thị chung</small></span></button>
+    <span class="ebook-step-connector" aria-hidden="true"></span>
+    <button class="ebook-config-step" type="button" data-step-tab="toc"><span class="ebook-step-number">2</span><span class="ebook-step-copy"><strong>Mục lục</strong><small>Sắp xếp cấu trúc sách</small></span></button>
+    <span class="ebook-step-connector" aria-hidden="true"></span>
+    <button class="ebook-config-step" type="button" data-step-tab="content"><span class="ebook-step-number">3</span><span class="ebook-step-copy"><strong>Nội dung</strong><small>Soạn bài và bài tập</small></span></button>
+  </nav>
+
+  <section class="panel">
+    <!-- TAB 1: Cover + fixed page template -->
+    <div class="tab-panel active" data-panel="cover">
+      <div class="cover-editor-grid">
+        <div class="form-panel">
+          <div class="form-section-heading"><span class="form-section-index">01</span><div><h3>Thông tin sách</h3><p>Thiết lập các thông tin cơ bản hiển thị cùng ebook.</p></div></div>
+          <div class="form-field"><label>Tên sách<em>*</em></label><input id="ebookTitle" required value="Tổng ôn Hình học TSA — Bài 1: Min - Max Oxy"></div>
+          <div class="form-row"><div class="form-field"><label>Môn học</label><select><option selected>Toán</option><option>Vật lý</option><option>Hoá học</option></select></div><div class="form-field"><label>Khối lớp</label><select><option>Lớp 10</option><option>Lớp 11</option><option selected>Lớp 12</option><option>Đại học</option></select></div></div>
+          <div class="form-field"><label for="ebookDescription">Mô tả sách</label><textarea id="ebookDescription" placeholder="Nhập mô tả ngắn giúp học viên hiểu nội dung và mục tiêu của ebook.">Tổng hợp kiến thức và bài tập Hình học TSA, tập trung vào các bài toán Min - Max trong mặt phẳng Oxy.</textarea></div>
+          <div class="form-section-heading form-section-heading-spaced"><span class="form-section-index">02</span><div><h3>Bìa</h3><p>Tải lên ảnh bìa hoàn chỉnh để đảm bảo đúng nhận diện xuất bản.</p></div></div>
+          <div class="form-field"><label>Ảnh bìa<em>*</em></label><label class="cover-upload-zone" id="coverUploadZone" for="coverImageInput"><input id="coverImageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden><svg class="icon"><use href="#i-file"/></svg><strong>Kéo thả ảnh vào đây hoặc chọn tệp</strong><span>PNG, JPG hoặc WEBP · đề xuất tỉ lệ 3:4 · tối đa 5 MB</span></label><p class="form-hint" id="coverUploadStatus">Chưa có ảnh bìa nào được chọn.</p></div>
+        </div>
+        <div class="cover-preview-col">
+          <span class="form-hint" style="display:block;margin-bottom:10px">Xem trước bìa sách</span>
+          <div class="cover-preview-box" id="coverPreview"><div class="cover-preview-empty" id="coverPreviewEmpty"><svg class="icon"><use href="#i-file"/></svg><strong>Chưa có ảnh bìa</strong><span>Ảnh đã tải lên sẽ hiển thị tại đây</span></div></div>
+        </div>
+      </div>
+
+      <div class="panel-divider"></div>
+
+      <div class="page-template-grid">
+        <div class="form-panel">
+          <div class="form-section-heading"><span class="form-section-index">03</span><div><h3>Mẫu trang</h3><p>Cấu hình hiển thị cố định cho mọi trang nội dung của sách.</p></div></div>
+          <div class="form-row"><div class="form-field"><label>Header — trái</label><input id="tplHeaderLeft" value="0395080447"></div><div class="form-field"><label>Header — phải</label><input id="tplHeaderRight" value="BMC Education"></div></div>
+          <div class="form-row"><div class="form-field"><label>Footer — trái</label><input id="tplFooterLeft" value="Tổng ôn Hình học TSA · Bài 1"></div><div class="form-field"><label>Footer — phải</label><input id="tplFooterRight" value="Trang {số trang}"></div></div>
+          <div class="form-field"><label>Kiểu watermark<em>*</em></label><div class="watermark-mode-selector" role="group" aria-label="Kiểu watermark"><button class="watermark-mode-option active" type="button" data-watermark-mode="text">Chỉ hiển thị text</button><button class="watermark-mode-option" type="button" data-watermark-mode="text_with_user_name">Text + tên người dùng</button></div><p class="form-hint">Tên người dùng được hệ thống lấy tự động theo tài khoản đang đăng nhập.</p></div>
+          <div class="form-field"><label>Nội dung watermark</label><input id="tplWatermark" value="BMC EDUCATION"></div>
+          <div class="watermark-slider-grid"><div class="form-field"><label for="tplWatermarkFontSize">Kích thước watermark <output id="tplWatermarkFontSizeOutput" for="tplWatermarkFontSize">22 px</output></label><input class="watermark-range" id="tplWatermarkFontSize" type="range" min="10" max="36" value="22"></div><div class="form-field"><label for="tplWatermarkOpacity">Độ mờ watermark <output id="tplWatermarkOpacityOutput" for="tplWatermarkOpacity">8%</output></label><input class="watermark-range" id="tplWatermarkOpacity" type="range" min="0" max="20" value="8"></div></div>
+          <div class="form-row"><div class="form-field"><label for="tplWatermarkCount">Số lượng watermark trên trang</label><input id="tplWatermarkCount" type="number" value="1" min="1" max="6"></div><div class="form-field"><label>Bắt đầu đánh số từ</label><input type="number" value="1" min="1"></div></div>
+          <button class="btn btn-primary btn-compact" type="button" data-open-modal="pageTemplateNameModal" style="width:fit-content">Lưu thành mẫu trang</button>
+        </div>
+        <div class="cover-preview-col">
+          <span class="form-hint" style="display:block;margin-bottom:10px">Xem trước 1 trang nội dung</span>
+          <div class="page-template-preview">
+            <div class="ptp-header"><span id="ptpHeaderLeft">0395080447</span><span id="ptpHeaderRight">BMC Education</span></div>
+            <div class="ptp-watermark-layer" id="ptpWatermarkLayer"><div class="ptp-watermark">BMC EDUCATION</div></div>
+            <div class="ptp-body">
+              <p class="ptp-line-h">A. LÝ THUYẾT</p>
+              <p class="ptp-line"></p><p class="ptp-line short"></p><p class="ptp-line"></p><p class="ptp-line short"></p>
+            </div>
+            <div class="ptp-footer"><span id="ptpFooterLeft">Tổng ôn Hình học TSA · Bài 1</span><span id="ptpFooterRight">Trang 4</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Table of contents -->
+    <div class="tab-panel" data-panel="toc">
+      <div class="level-cap" style="margin-bottom:16px"><svg class="icon"><use href="#i-shield"/></svg>Mục lục cho phép tối đa 6 cấp và chỉ thể hiện cấu trúc ebook. Mỗi cấp có thể chứa nhiều loại nội dung; cấp 6 là cấp cuối cùng.</div>
+      <div class="tree-toolbar"><strong style="font-size:12px">Cây mục lục</strong><div style="display:flex;gap:8px"><button class="btn btn-outline" type="button" data-open-modal="importWordModal"><svg class="icon"><use href="#i-download"/></svg>Nhập từ file Word</button><button class="btn btn-outline" type="button" id="addRootNode"><svg class="icon"><use href="#i-plus"/></svg>Thêm chương</button></div></div>
+
+      <div class="course-tree" id="tocTree">
+        <div class="tree-node" data-level="1"><div class="tree-node-row"><span class="tree-level">1</span><div class="tree-node-title"><strong>Bài 1 — Min - Max Oxy</strong></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-edit-node><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div><div class="tree-children">
+          <div class="tree-node" data-level="2"><div class="tree-node-row"><span class="tree-level">2</span><div class="tree-node-title"><strong>A. Kiến thức nền tảng</strong></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-edit-node><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div><div class="tree-children"><div class="tree-node" data-level="3"><div class="tree-node-row"><span class="tree-level">3</span><div class="tree-node-title"><strong>I. Kiến thức cần nhớ</strong></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-edit-node><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div></div><div class="tree-node" data-level="3"><div class="tree-node-row"><span class="tree-level">3</span><div class="tree-node-title"><strong>II. Các bài toán Min - Max</strong></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-edit-node><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div></div></div></div>
+          <div class="tree-node" data-level="2"><div class="tree-node-row"><span class="tree-level">2</span><div class="tree-node-title"><strong>B. Luyện tập và vận dụng</strong></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con"><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-edit-node><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Content editor -->
+    <div class="tab-panel" data-panel="content">
+      <div class="content-editor-grid">
+        <aside class="panel toc-picker">
+          <div class="panel-head"><h3 style="font-size:13px">Chọn nội dung để soạn</h3></div>
+          <div class="content-nav-switch" role="tablist" aria-label="Cách chọn nội dung"><button class="content-nav-option active" type="button" data-content-nav="toc" role="tab" aria-selected="true"><svg class="icon"><use href="#i-scroll"/></svg>Mục lục</button><button class="content-nav-option" type="button" data-content-nav="pages" role="tab" aria-selected="false"><svg class="icon"><use href="#i-layout"/></svg>Lưới trang</button></div>
+          <div class="content-nav-panel active" data-content-nav-panel="toc"><p class="content-nav-hint">Cấu trúc được đồng bộ từ bước Mục lục. Mỗi mục có cấp con có thể thu gọn hoặc mở rộng.</p><div class="toc-picker-scroll"><div class="toc-picker-list" id="tocPickerList"></div></div></div>
+          <div class="content-nav-panel" data-content-nav-panel="pages"><p class="content-nav-hint">Chọn trang để chỉnh sửa nội dung tương ứng.</p><div class="ebook-page-grid" id="ebookPageGrid"><button class="ebook-page-tile cover" type="button" data-page-index="0" data-page-label="Trang bìa"><span>Bìa</span><small>0</small></button><button class="ebook-page-tile" type="button" data-page-index="1" data-page-label="Trang 1 — Mở đầu"><span>Trang</span><small>1</small></button><button class="ebook-page-tile" type="button" data-page-index="2" data-page-label="Trang 2 — Mục tiêu bài học"><span>Trang</span><small>2</small></button><button class="ebook-page-tile" type="button" data-page-index="3" data-page-label="Trang 3 — Kiến thức cần nhớ"><span>Trang</span><small>3</small></button><button class="ebook-page-tile" type="button" data-page-index="4" data-page-label="Trang 4 — Ví dụ minh hoạ"><span>Trang</span><small>4</small></button><button class="ebook-page-tile" type="button" data-page-index="5" data-page-label="Trang 5 — Bài toán Min - Max"><span>Trang</span><small>5</small></button><button class="ebook-page-tile" type="button" data-page-index="6" data-page-label="Trang 6 — Phương pháp giải"><span>Trang</span><small>6</small></button><button class="ebook-page-tile" type="button" data-page-index="7" data-page-label="Trang 7 — Ví dụ nâng cao"><span>Trang</span><small>7</small></button><button class="ebook-page-tile" type="button" data-page-index="8" data-page-label="Trang 8 — Luyện tập"><span>Trang</span><small>8</small></button><button class="ebook-page-tile" type="button" data-page-index="9" data-page-label="Trang 9 — Tổng kết"><span>Trang</span><small>9</small></button><button class="ebook-page-tile" type="button" data-page-index="10" data-page-label="Trang 10 — Kiểm tra"><span>Trang</span><small>10</small></button></div></div>
+        </aside>
+
+        <div class="panel content-editor-panel">
+          <div class="editor-toolbar">
+            <button type="button" aria-label="Đậm" data-toast="Định dạng đậm (mô phỏng)"><strong>B</strong></button>
+            <button type="button" aria-label="Nghiêng" data-toast="Định dạng nghiêng (mô phỏng)"><em>I</em></button>
+            <button type="button" aria-label="Danh sách" data-toast="Chèn danh sách (mô phỏng)"><svg class="icon"><use href="#i-grip"/></svg></button>
+            <button type="button" aria-label="Công thức LaTeX" data-toast="Chèn công thức LaTeX — render bằng KaTeX (mô phỏng)">∑</button>
+            <button type="button" aria-label="Chèn ảnh" data-toast="Chèn ảnh minh hoạ (mô phỏng)"><svg class="icon"><use href="#i-file"/></svg></button>
+            <button type="button" aria-label="Chèn video" data-toast="Mở form gắn video bài giảng (mô phỏng)"><svg class="icon"><use href="#i-download"/></svg></button>
+            <div style="flex:1"></div>
+            <span class="editor-context" id="editorContext">Đang soạn: II. Các bài toán Max - Min</span>
+            <button class="editor-add-exercise" type="button" id="addExerciseBtn"><svg class="icon"><use href="#i-plus"/></svg>Thêm bài tập</button>
+            <span class="form-hint">Công thức trong nội dung được lưu ở dạng LaTeX, render bằng KaTeX khi hiển thị trên Portal.</span>
+          </div>
+
+          <div class="editor-surface" id="editorSurface" contenteditable="true">
+            <p><strong>2. Sử dụng bất đẳng thức</strong></p>
+            <p><strong>a) Bất đẳng thức vector</strong></p>
+            <ul>
+              <li>Với hai vector <span class="latex-inline">$\vec{u}, \vec{v}$</span> ta luôn có: <span class="latex-inline">$|\vec{u}+\vec{v}| \le |\vec{u}|+|\vec{v}|$</span></li>
+              <li>Dấu "=" xảy ra khi <span class="latex-inline">$\vec{u}$</span> và <span class="latex-inline">$\vec{v}$</span> cùng hướng.</li>
+            </ul>
+            <p><strong>Ví dụ 1.</strong> Trong mặt phẳng <span class="latex-inline">$Oxy$</span> cho các điểm <span class="latex-inline">$A, B, C$</span>. Xét điểm <span class="latex-inline">$M$</span> thay đổi, tìm giá trị nhỏ nhất của <span class="latex-inline">$MA + MB$</span>.</p>
+            <p class="editor-block-solution"><em>Lời giải.</em> Ta có <span class="latex-inline">$MA+MB \ge AB$</span>, dấu "=" xảy ra khi <span class="latex-inline">$M$</span> nằm trên đoạn thẳng <span class="latex-inline">$AB$</span>.</p>
+          </div>
+
+          <div class="editor-helper"><svg class="icon"><use href="#i-exam"/></svg><span>Bài tập được chèn ngay tại vị trí soạn thảo. Mỗi bài tập có thể gắn video lời giải riêng.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<div class="modal-backdrop" id="addExerciseModal"><section class="modal exercise-picker-modal" role="dialog" aria-modal="true" aria-labelledby="exercisePickerTitle"><div class="modal-head"><div><h2 id="exercisePickerTitle">Thêm bài tập vào nội dung</h2><p>Chọn loại bài tập. Biểu mẫu chi tiết sẽ được chèn trực tiếp vào editor.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="exercise-picker-options"><button type="button" class="exercise-picker-option" data-exercise-type="multiple_choice"><span class="exercise-picker-icon">A</span><span><strong>Trắc nghiệm</strong><small>4 đáp án A, B, C, D · chọn một đáp án đúng</small></span><svg class="icon"><use href="#i-arrow"/></svg></button><button type="button" class="exercise-picker-option" data-exercise-type="fill_blank"><span class="exercise-picker-icon">…</span><span><strong>Điền vào chỗ trống</strong><small>Nhập đáp án đúng và sai số chấp nhận được</small></span><svg class="icon"><use href="#i-arrow"/></svg></button></div></section></div>
+
+<div class="modal-backdrop" id="tocNodeModal"><section class="modal toc-node-modal" role="dialog" aria-modal="true" aria-labelledby="tocNodeModalTitle"><div class="modal-head"><div><h2 id="tocNodeModalTitle">Chỉnh sửa mục lục</h2><p id="tocNodeModalDescription">Cập nhật tên cho mục trong cấu trúc ebook.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="modal-form"><div class="form-field"><label for="tocNodeTitle">Tên mục<em>*</em></label><input id="tocNodeTitle" maxlength="160" placeholder="Ví dụ: Chương 1 — Kiến thức nền tảng"></div><div class="modal-actions"><button class="btn btn-outline" type="button" data-close-modal>Huỷ</button><button class="btn btn-primary" type="button" id="saveTocNode">Lưu mục</button></div></div></section></div>
+
+<div class="modal-backdrop" id="pageTemplateNameModal"><section class="modal page-template-name-modal" role="dialog" aria-modal="true" aria-labelledby="pageTemplateNameModalTitle"><div class="modal-head"><div><h2 id="pageTemplateNameModalTitle">Lưu mẫu trang</h2><p>Đặt tên để dễ tìm và tái sử dụng cấu hình này cho ebook khác.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="modal-form"><div class="form-field"><label for="pageTemplateName">Tên mẫu trang<em>*</em></label><input id="pageTemplateName" value="BMC Education — mặc định" maxlength="100" placeholder="Ví dụ: BMC Education — mặc định"></div><div class="modal-actions"><button class="btn btn-outline" type="button" data-close-modal>Huỷ</button><button class="btn btn-primary" type="button" id="savePageTemplate">Lưu mẫu trang</button></div></div></section></div>
+
+<div class="modal-backdrop" id="importWordModal"><section class="modal" role="dialog" aria-modal="true" style="width:min(100%,560px)"><div class="modal-head"><div><h2>Nhập nội dung từ file Word</h2><p>File cần dùng bộ Style chuẩn của BMC và công thức được gõ bằng LaTeX.</p></div><button class="close-btn" type="button" data-close-modal aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <div class="modal-form">
+    <div class="captcha" style="justify-content:center;flex-direction:column;gap:8px;padding:26px;text-align:center"><svg class="icon" style="width:26px;height:26px"><use href="#i-download"/></svg><span>Kéo thả file .docx vào đây hoặc bấm để chọn file</span></div>
+    <ul class="import-req-list">
+      <li><svg class="icon"><use href="#i-check"/></svg>Dùng Style đặt tên: <code>BMC-Theory</code>, <code>BMC-Example</code>, <code>BMC-Question</code>, <code>BMC-Answer</code></li>
+      <li><svg class="icon"><use href="#i-check"/></svg>Công thức toán đặt trong <code>$...$</code> (inline) hoặc <code>$$...$$</code> (block)</li>
+      <li><svg class="icon"><use href="#i-check"/></svg>Hệ thống chỉ tạo bản nháp — cần rà soát lại trong trình soạn trước khi xuất bản</li>
+    </ul>
+    <div class="import-preview">
+      <div class="import-preview-head"><svg class="icon"><use href="#i-file"/></svg><strong>Sample_book.docx</strong><span class="status-pill"><i class="status-dot on"></i>Đã phân tích cấu trúc</span></div>
+      <div class="import-preview-row"><span class="content-type-badge type-theory">LT</span>A. LÝ THUYẾT → 12 đoạn lý thuyết, 34 công thức LaTeX</div>
+      <div class="import-preview-row"><span class="content-type-badge type-example">VD</span>II. Các bài toán Max – Min → 5 ví dụ kèm lời giải</div>
+      <div class="import-preview-row"><span class="content-type-badge type-question">CH</span>B. BÀI TẬP RÈN LUYỆN → 15 câu điền đáp án</div>
+      <div class="import-preview-row warn"><svg class="icon"><use href="#i-clock"/></svg>2 đoạn không khớp Style chuẩn — sẽ được gắn tạm vào "Lý thuyết", cần rà soát tay</div>
+    </div>
+    <button class="btn btn-primary" type="button" data-close-modal data-toast="Đã chèn bản nháp vào mục lục — vui lòng rà soát trong tab Nội dung (mô phỏng)" style="width:100%">Xác nhận &amp; chèn vào mục lục</button>
+  </div>
+</section></div>
+
+<script src="shared-admin.js" defer></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', () => {
+  const $$ = s => [...document.querySelectorAll(s)];
+  const $ = s => document.querySelector(s);
+  function lock(open){ document.body.classList.toggle('locked', open); }
+
+  function activateConfigTab(tabName) {
+    $$('[data-tab]').forEach(x => x.classList.toggle('active', x.dataset.tab === tabName));
+    $$('[data-panel]').forEach(x => x.classList.toggle('active', x.dataset.panel === tabName));
+    $$('[data-step-tab]').forEach(x => { const active = x.dataset.stepTab === tabName; x.classList.toggle('active', active); x.setAttribute('aria-current', active ? 'step' : 'false'); });
+    if (tabName === 'content') renderTocPicker();
+  }
+  $$('[data-tab]').forEach(tab => tab.addEventListener('click', () => activateConfigTab(tab.dataset.tab)));
+  $$('[data-step-tab]').forEach(step => step.addEventListener('click', () => activateConfigTab(step.dataset.stepTab)));
+  $$('[data-open-modal]').forEach(x => x.addEventListener('click', () => { document.getElementById(x.dataset.openModal).classList.add('open'); lock(true); if (x.dataset.openModal === 'pageTemplateNameModal') setTimeout(() => $('#pageTemplateName')?.focus(), 80); }));
+  $$('[data-close-modal]').forEach(x => x.addEventListener('click', () => { x.closest('.modal-backdrop').classList.remove('open'); lock(false); }));
+  $$('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); lock(false); } }));
+  $$('[data-toast]').forEach(x => x.addEventListener('click', e => { if (x.tagName === 'A') e.preventDefault(); window.bmcAdminToast?.(x.dataset.toast); }));
+
+  // Cover: upload-only, using the completed cover artwork supplied by the author.
+  const coverMode = 'upload';
+  let uploadedCover = null;
+  function syncCover() {
+    const box = $('#coverPreview');
+    box.classList.toggle('has-cover-image', Boolean(uploadedCover));
+    box.style.backgroundImage = uploadedCover ? `url("${uploadedCover.dataUrl}")` : '';
+    $('#coverPreviewEmpty').hidden = Boolean(uploadedCover);
+  }
+  function handleCoverFile(file) {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { window.bmcAdminToast?.('Vui lòng chọn tệp hình ảnh hợp lệ'); return; }
+    if (file.size > 5 * 1024 * 1024) { window.bmcAdminToast?.('Ảnh bìa cần nhỏ hơn 5 MB'); return; }
+    const reader = new FileReader();
+    reader.onload = () => { uploadedCover = { name: file.name, mimeType: file.type, size: file.size, dataUrl: reader.result }; $('#coverUploadStatus').textContent = `Đã chọn ${file.name} · ${(file.size / 1024 / 1024).toFixed(1)} MB`; $('#coverUploadZone').classList.add('has-file'); syncCover(); };
+    reader.readAsDataURL(file);
+  }
+  $('#coverImageInput')?.addEventListener('change', event => handleCoverFile(event.target.files?.[0]));
+  ['dragenter', 'dragover'].forEach(eventName => $('#coverUploadZone')?.addEventListener(eventName, event => { event.preventDefault(); $('#coverUploadZone').classList.add('is-dragging'); }));
+  ['dragleave', 'drop'].forEach(eventName => $('#coverUploadZone')?.addEventListener(eventName, event => { event.preventDefault(); $('#coverUploadZone').classList.remove('is-dragging'); }));
+  $('#coverUploadZone')?.addEventListener('drop', event => handleCoverFile(event.dataTransfer?.files?.[0]));
+
+  // Page-template watermark: text only or text plus the signed-in user's name.
+  let watermarkMode = 'text';
+  const signedInUserName = window.bmcAdmin?.session?.name || 'Admin BMC';
+  function syncTemplate() {
+    $('#ptpHeaderLeft').textContent = $('#tplHeaderLeft').value;
+    $('#ptpHeaderRight').textContent = $('#tplHeaderRight').value;
+    $('#ptpFooterLeft').textContent = $('#tplFooterLeft').value;
+    $('#ptpFooterRight').textContent = ($('#tplFooterRight').value || '').replace('{số trang}', '4');
+    const watermarkText = watermarkMode === 'text_with_user_name' ? `${$('#tplWatermark').value} · ${signedInUserName}` : $('#tplWatermark').value;
+    const watermarkCount = Math.max(1, Math.min(6, Number($('#tplWatermarkCount').value) || 1));
+    $('#tplWatermarkCount').value = watermarkCount;
+    const layer = $('#ptpWatermarkLayer'); layer.replaceChildren();
+    const normalX = Math.sin(28 * Math.PI / 180), normalY = Math.cos(28 * Math.PI / 180);
+    const gap = watermarkCount > 1 ? 44 / (watermarkCount - 1) : 0;
+    Array.from({ length: watermarkCount }, (_, index) => index * gap - 22 * (watermarkCount > 1 ? 1 : 0)).forEach(offset => { const mark = document.createElement('div'); mark.className = 'ptp-watermark'; mark.textContent = watermarkText; mark.style.opacity = Number($('#tplWatermarkOpacity').value) / 100; mark.style.fontSize = `${Number($('#tplWatermarkFontSize').value) || 22}px`; mark.style.left = `${50 + normalX * offset}%`; mark.style.top = `${50 + normalY * offset}%`; layer.appendChild(mark); });
+    $('#tplWatermarkFontSizeOutput').textContent = `${$('#tplWatermarkFontSize').value} px`;
+    $('#tplWatermarkOpacityOutput').textContent = `${$('#tplWatermarkOpacity').value}%`;
+  }
+  $$('[data-watermark-mode]').forEach(button => button.addEventListener('click', () => {
+    watermarkMode = button.dataset.watermarkMode;
+    $$('[data-watermark-mode]').forEach(x => x.classList.toggle('active', x === button));
+    syncTemplate();
+  }));
+  ['tplHeaderLeft','tplHeaderRight','tplFooterLeft','tplFooterRight','tplWatermark','tplWatermarkCount','tplWatermarkFontSize','tplWatermarkOpacity'].forEach(id => $('#' + id).addEventListener('input', syncTemplate));
+  $('#savePageTemplate')?.addEventListener('click', () => {
+    const name = $('#pageTemplateName').value.trim();
+    if (!name) { $('#pageTemplateName').focus(); window.bmcAdminToast?.('Vui lòng đặt tên cho mẫu trang'); return; }
+    try { localStorage.setItem('bmc_ebook_page_template_v1', JSON.stringify({ name, savedAt: new Date().toISOString(), configuration: collectDraft('template').pageTemplate })); } catch (_) {}
+    $('#pageTemplateNameModal').classList.remove('open'); lock(false);
+    window.bmcAdminToast?.(`Đã lưu mẫu trang “${name}”`);
+  });
+  syncCover(); syncTemplate();
+
+  // Six-level TOC: a structural tree only; each branch may contain any mix of content.
+  const MAX_LEVEL = 6;
+  let tocModalState = null;
+  function openTocNodeModal(state) {
+    tocModalState = state;
+    const isEdit = state.mode === 'edit';
+    $('#tocNodeModalTitle').textContent = isEdit ? `Chỉnh sửa mục cấp ${state.level}` : `Thêm mục cấp ${state.level}`;
+    $('#tocNodeModalDescription').textContent = isEdit ? 'Cập nhật tên của mục trong cấu trúc ebook.' : 'Tạo một mục mới trong cây mục lục hiện tại.';
+    $('#tocNodeTitle').value = isEdit ? state.node.querySelector(':scope > .tree-node-row strong').textContent : '';
+    $('#saveTocNode').textContent = isEdit ? 'Lưu thay đổi' : 'Thêm vào mục lục';
+    $('#tocNodeModal').classList.add('open'); lock(true); setTimeout(() => $('#tocNodeTitle').focus(), 80);
+  }
+  function updateCollapseControl(node) {
+    const children = node.querySelector(':scope > .tree-children');
+    const hasChildren = Boolean(children?.querySelector(':scope > .tree-node'));
+    let toggle = node.querySelector(':scope > .tree-node-row .btn-toggle-children');
+    if (!hasChildren) { toggle?.remove(); node.classList.remove('is-collapsed'); return; }
+    if (!toggle) { toggle = document.createElement('button'); toggle.className = 'btn-toggle-children'; toggle.type = 'button'; toggle.setAttribute('aria-label', 'Thu gọn mục con'); toggle.innerHTML = '<svg class="icon"><use href="#i-chevron"/></svg>'; node.querySelector(':scope > .tree-node-row .tree-node-actions').prepend(toggle); toggle.addEventListener('click', () => { const collapsed = node.classList.toggle('is-collapsed'); toggle.setAttribute('aria-label', collapsed ? 'Mở rộng mục con' : 'Thu gọn mục con'); toggle.setAttribute('aria-expanded', String(!collapsed)); }); }
+    toggle.setAttribute('aria-expanded', String(!node.classList.contains('is-collapsed')));
+  }
+  function createNode(title, level) {
+    const node = document.createElement('div'); node.className = 'tree-node'; node.dataset.level = String(level);
+    node.innerHTML = `<div class="tree-node-row"><span class="tree-level">${level}</span><div class="tree-node-title"><strong></strong></div><div class="tree-node-actions"><button class="btn-add-child" type="button" aria-label="Thêm mục con" ${level >= MAX_LEVEL ? 'disabled' : ''}><svg class="icon"><use href="#i-plus"/></svg></button><button type="button" aria-label="Sửa" data-edit-node><svg class="icon"><use href="#i-edit"/></svg></button><button class="btn-remove-node" type="button" aria-label="Xoá"><svg class="icon"><use href="#i-trash"/></svg></button></div></div>`;
+    node.querySelector('strong').textContent = title; return node;
+  }
+  function bindNode(node) {
+    const level = Number(node.dataset.level);
+    if (level >= MAX_LEVEL) node.querySelector(':scope > .tree-node-row .btn-add-child').disabled = true;
+    node.querySelector(':scope > .tree-node-row .btn-add-child')?.addEventListener('click', () => {
+      if (level >= MAX_LEVEL) { window.bmcAdminToast?.('Cấp 6 là cấp sâu nhất của mục lục'); return; }
+      openTocNodeModal({ mode: 'add', parent: node, level: level + 1 });
+    });
+    node.querySelector(':scope > .tree-node-row [data-edit-node]')?.addEventListener('click', () => {
+      openTocNodeModal({ mode: 'edit', node, level });
+    });
+    node.querySelector(':scope > .tree-node-row .btn-remove-node')?.addEventListener('click', () => {
+      if (!confirm(`Xoá “${node.querySelector(':scope > .tree-node-row strong').textContent}” và các mục con?`)) return;
+      const parent = node.parentElement?.closest('.tree-node'); node.remove(); if (parent) updateCollapseControl(parent);
+      renderTocPicker();
+      window.bmcAdminToast?.('Đã xoá mục khỏi mục lục');
+    });
+  }
+  $$('.tree-node').forEach(node => { bindNode(node); updateCollapseControl(node); });
+  $('#addRootNode')?.addEventListener('click', () => openTocNodeModal({ mode: 'add', parent: null, level: 1 }));
+  $('#saveTocNode')?.addEventListener('click', () => {
+    const title = $('#tocNodeTitle').value.trim(); if (!title || !tocModalState) { $('#tocNodeTitle').focus(); return; }
+    if (tocModalState.mode === 'edit') { tocModalState.node.querySelector(':scope > .tree-node-row strong').textContent = title; }
+    else { const child = createNode(title, tocModalState.level); if (tocModalState.parent) { let children = tocModalState.parent.querySelector(':scope > .tree-children'); if (!children) { children = document.createElement('div'); children.className = 'tree-children'; tocModalState.parent.appendChild(children); } children.appendChild(child); bindNode(child); updateCollapseControl(tocModalState.parent); } else { $('#tocTree').appendChild(child); bindNode(child); } }
+    $('#tocNodeModal').classList.remove('open'); lock(false); renderTocPicker(); window.bmcAdminToast?.(tocModalState.mode === 'edit' ? 'Đã cập nhật mục lục' : `Đã thêm mục cấp ${tocModalState.level}`); tocModalState = null;
+  });
+
+  // Content editor: navigate by the configured TOC or by individual ebook pages.
+  const editorDrafts = new Map();
+  let activeEditorKey = 'toc:lesson-minmax';
+  let initialEditorContent = $('#editorSurface').innerHTML;
+  editorDrafts.set(activeEditorKey, initialEditorContent);
+  const escapeEditorHtml = value => value.replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
+  function updateEditorTarget(key, label, sourceButton) {
+    const editor = $('#editorSurface');
+    editorDrafts.set(activeEditorKey, editor.innerHTML);
+    if (!editorDrafts.has(key)) editorDrafts.set(key, `<p><strong>${escapeEditorHtml(label)}</strong></p><p>Nhập nội dung cho phần này tại đây.</p>`);
+    activeEditorKey = key; editor.innerHTML = editorDrafts.get(key);
+    editor.querySelectorAll('.inline-exercise-form').forEach(bindExerciseForm);
+    $('#editorContext').textContent = `Đang soạn: ${label}`;
+    $$('.toc-picker-item,.ebook-page-tile').forEach(item => item.classList.toggle('active', item === sourceButton));
+  }
+  function renderTocPicker() {
+    const list = $('#tocPickerList'); if (!list) return;
+    list.replaceChildren();
+    const renderNode = (node, path) => {
+      const branch = document.createElement('div'); branch.className = 'content-toc-node';
+      const row = document.createElement('div'); row.className = 'content-toc-row';
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'toc-picker-item'; button.dataset.tocKey = `toc:${path}`;
+      const title = document.createElement('span'); title.className = 'toc-picker-item-title'; title.textContent = node.querySelector(':scope > .tree-node-row strong').textContent;
+      button.append(title); button.addEventListener('click', () => updateEditorTarget(button.dataset.tocKey, title.textContent, button));
+      if (button.dataset.tocKey === activeEditorKey) button.classList.add('active');
+      row.appendChild(button);
+      const children = [...node.querySelectorAll(':scope > .tree-children > .tree-node')];
+      if (children.length) {
+        const toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'content-toc-toggle'; toggle.setAttribute('aria-label', 'Thu gọn mục con'); toggle.setAttribute('aria-expanded', 'true'); toggle.innerHTML = '<svg class="icon"><use href="#i-chevron"/></svg>';
+        const childList = document.createElement('div'); childList.className = 'content-toc-children';
+        children.forEach((child, index) => childList.appendChild(renderNode(child, `${path}-${index + 1}`)));
+        toggle.addEventListener('click', () => { const collapsed = branch.classList.toggle('is-collapsed'); toggle.setAttribute('aria-expanded', String(!collapsed)); toggle.setAttribute('aria-label', collapsed ? 'Mở rộng mục con' : 'Thu gọn mục con'); });
+        row.appendChild(toggle); branch.append(row, childList);
+      } else branch.appendChild(row);
+      return branch;
+    };
+    [...$('#tocTree').children].forEach((node, index) => list.appendChild(renderNode(node, `${index + 1}`)));
+    if (!list.children.length) list.innerHTML = '<p class="content-nav-empty">Chưa có mục lục. Hãy thêm cấu trúc ở bước Mục lục.</p>';
+    if (activeEditorKey.startsWith('toc:') && !list.querySelector('.toc-picker-item.active')) {
+      const preferred = [...list.querySelectorAll('.toc-picker-item')].find(item => item.querySelector('.toc-picker-item-title').textContent.includes('II.')) || list.querySelector('.toc-picker-item');
+      if (preferred) { const currentContent = editorDrafts.get(activeEditorKey) || initialEditorContent; activeEditorKey = preferred.dataset.tocKey; editorDrafts.set(activeEditorKey, currentContent); preferred.classList.add('active'); $('#editorContext').textContent = `Đang soạn: ${preferred.querySelector('.toc-picker-item-title').textContent}`; }
+    }
+  }
+  $$('.content-nav-option').forEach(button => button.addEventListener('click', () => {
+    const mode = button.dataset.contentNav;
+    $$('.content-nav-option').forEach(item => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-selected', String(active)); });
+    $$('[data-content-nav-panel]').forEach(panel => panel.classList.toggle('active', panel.dataset.contentNavPanel === mode));
+    if (mode === 'toc') renderTocPicker();
+  }));
+  $$('.ebook-page-tile').forEach(tile => tile.addEventListener('click', () => updateEditorTarget(`page:${tile.dataset.pageIndex}`, tile.dataset.pageLabel, tile)));
+  $('#editorSurface').addEventListener('input', () => editorDrafts.set(activeEditorKey, $('#editorSurface').innerHTML));
+  renderTocPicker();
+
+  // Content editor and embedded exercise forms.
+  const exerciseModal = $('#addExerciseModal');
+  $('#addExerciseBtn')?.addEventListener('click', () => { exerciseModal.classList.add('open'); lock(true); });
+  let exerciseIndex = 0;
+  function bindExerciseForm(form) {
+    form.querySelector('[data-toggle-exercise]')?.addEventListener('click', () => { const collapsed = form.classList.toggle('is-collapsed'); const toggle = form.querySelector('[data-toggle-exercise]'); toggle.setAttribute('aria-expanded', String(!collapsed)); toggle.setAttribute('aria-label', collapsed ? 'Mở rộng bài tập' : 'Thu gọn bài tập'); });
+    form.querySelector('[data-remove-exercise]').addEventListener('click', () => { if (confirm('Gỡ bài tập này khỏi nội dung?')) { form.remove(); window.bmcAdminToast?.('Đã gỡ bài tập'); } });
+    form.querySelector('[data-save-exercise]').addEventListener('click', () => window.bmcAdminToast?.('Đã lưu cấu hình bài tập'));
+  }
+  function insertExercise(type) {
+    exerciseIndex += 1; const isMcq = type === 'multiple_choice'; const id = `exercise-${exerciseIndex}`;
+    const form = document.createElement('section'); form.className = 'inline-exercise-form'; form.dataset.exerciseType = type; form.contentEditable = 'false';
+    form.innerHTML = `<div class="inline-exercise-head"><span class="content-type-badge ${isMcq ? 'type-question' : 'type-example'}">${isMcq ? 'Trắc nghiệm' : 'Điền chỗ trống'}</span><strong>Bài tập ${exerciseIndex}</strong><span class="inline-exercise-meta">Được chèn trong nội dung</span><button type="button" class="inline-exercise-toggle" data-toggle-exercise aria-label="Thu gọn bài tập" aria-expanded="true"><svg class="icon"><use href="#i-chevron"/></svg></button><button type="button" class="inline-exercise-remove" data-remove-exercise aria-label="Gỡ bài tập"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="inline-exercise-body"><div class="form-field"><label>Nội dung bài tập<em>*</em></label><textarea placeholder="Nhập đề bài, có thể dùng LaTeX…">${isMcq ? 'Cho hàm số f(x) = x² - 4x + 3. Giá trị nhỏ nhất của f(x) là bao nhiêu?' : 'Điền giá trị nhỏ nhất của biểu thức P = x² - 6x + 10: ____'}</textarea></div>${isMcq ? `<div class="exercise-options"><label><span>A</span><input name="${id}" value="-1"><input type="radio" name="${id}-correct" aria-label="Đáp án đúng A"></label><label><span>B</span><input name="${id}" value="0"><input type="radio" name="${id}-correct" checked aria-label="Đáp án đúng B"></label><label><span>C</span><input name="${id}" value="1"><input type="radio" name="${id}-correct" aria-label="Đáp án đúng C"></label><label><span>D</span><input name="${id}" value="3"><input type="radio" name="${id}-correct" aria-label="Đáp án đúng D"></label></div>` : `<div class="form-row"><div class="form-field"><label>Đáp án đúng<em>*</em></label><input value="1"></div><div class="form-field"><label>Sai số chấp nhận</label><input value="± 0.01"></div></div>`}<div class="form-field exercise-text-solution"><label>Lời giải text</label><textarea placeholder="Nhập lời giải chi tiết cho bài tập…">${isMcq ? 'Ta có f(x) = (x - 2)² - 1 nên giá trị nhỏ nhất là -1.' : 'Hoàn thành bình phương: P = (x - 3)² + 1, do đó giá trị nhỏ nhất là 1.'}</textarea></div><div class="exercise-video-field"><div><svg class="icon"><use href="#i-download"/></svg><strong>Video lời giải</strong><span>Không bắt buộc</span></div><input type="url" placeholder="Dán link video lời giải (YouTube / Vimeo / nội bộ)"></div><div class="inline-exercise-actions"><button class="btn btn-outline" type="button" data-save-exercise>Lưu bài tập</button></div></div>`;
+    $('#editorSurface').appendChild(form); bindExerciseForm(form); form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    window.bmcAdminToast?.('Đã chèn form bài tập vào editor');
+  }
+  $$('.exercise-picker-option').forEach(button => button.addEventListener('click', () => { exerciseModal.classList.remove('open'); lock(false); insertExercise(button.dataset.exerciseType); }));
+
+  // Save a structured local draft for the interactive demo. The checked-in JSON remains the DB-design sample.
+  function serializeNode(node) { return { title: node.querySelector(':scope > .tree-node-row strong').textContent, level: Number(node.dataset.level), children: [...node.querySelectorAll(':scope > .tree-children > .tree-node')].map(serializeNode) }; }
+  function collectDraft(status) { return { status, updatedAt: new Date().toISOString(), ebook: { title: $('#ebookTitle').value.trim(), description: $('#ebookDescription').value.trim() }, cover: { mode: coverMode, upload: uploadedCover && { name: uploadedCover.name, mimeType: uploadedCover.mimeType, size: uploadedCover.size } }, pageTemplate: { name: $('#pageTemplateName').value.trim(), watermark: { mode: watermarkMode, text: $('#tplWatermark').value, userNameTemplate: watermarkMode === 'text_with_user_name' ? '{{session.user.name}}' : null, count: Number($('#tplWatermarkCount').value), opacity: Number($('#tplWatermarkOpacity').value), fontSize: Number($('#tplWatermarkFontSize').value) }, header: { left: $('#tplHeaderLeft').value, right: $('#tplHeaderRight').value }, footer: { left: $('#tplFooterLeft').value, right: $('#tplFooterRight').value } }, toc: { maxDepth: MAX_LEVEL, nodes: [...$('#tocTree').children].map(serializeNode) }, exercises: $$('.inline-exercise-form').map(form => ({ type: form.dataset.exerciseType, question: form.querySelector('textarea').value, textSolution: form.querySelector('.exercise-text-solution textarea')?.value || '', solutionVideoUrl: form.querySelector('input[type="url"]').value })) }; }
+  function saveDraft(status) { const draft = collectDraft(status); try { localStorage.setItem('bmc_ebook_builder_draft_v1', JSON.stringify(draft)); } catch (_) {} return draft; }
+  $('#saveEbookDraft')?.addEventListener('click', () => { saveDraft('draft'); window.bmcAdminToast?.('Đã lưu bản nháp cấu hình ebook'); });
+  $('#publishEbook')?.addEventListener('click', () => { saveDraft('published'); window.bmcAdminToast?.('Đã xuất bản ebook lên Portal (bản demo)'); });
+});
+</script>
+</body></html>
